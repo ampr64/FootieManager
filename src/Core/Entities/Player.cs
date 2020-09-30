@@ -10,6 +10,12 @@ namespace Domain.Entities
 
         public Club Club { get; set; }
 
+        public decimal Salary { get; set; }
+
+        public int GoalCount { get; set; }
+
+        public int AssistCount { get; set; }
+
         public Position Position { get; set; }
 
         public Player(string firstName, string lastName, int countryId, DateTime birthDate, string pictureUrl, int clubId, int positionId)
