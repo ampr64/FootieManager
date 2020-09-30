@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Services;
 using Domain.Entities;
@@ -26,24 +24,33 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<Player> Get(int id)
         {
-            return "value";
+            return await _playerService.GetByIdAsync(id);
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> New([FromBody] Player player)
         {
+            await _playerService.NewAsync(player);
+            return CreatedAtAction(nameof(Get), new { id = player.Id }, player);
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Update(int id, [FromBody] Player player)
         {
+            if (id != player.Id)
+                return BadRequest();
+
+            await _playerService.UpdateAsync(player);
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            await _playerService.DeleteAsync(id);
+            return NoContent();
         }
     }
 }
