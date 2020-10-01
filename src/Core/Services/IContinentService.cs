@@ -1,8 +1,9 @@
-﻿using Core.Entities;
+﻿using Core.Common;
+using Core.Entities;
 
 namespace Core.Services
 {
-    public interface IContinentService : IService<Continent, int>
+    public interface IContinentService : IEntityService<Continent, int>
     {
         
     }

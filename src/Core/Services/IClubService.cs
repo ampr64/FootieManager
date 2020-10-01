@@ -1,9 +1,10 @@
-﻿using Core.Entities;
+﻿using Core.Common;
+using Core.Entities;
 using System.Threading.Tasks;
 
 namespace Core.Services
 {
-    public interface IClubService : IService<Club, int>
+    public interface IClubService : IEntityService<Club, int>
     {
         Task<int> GoalsFor();
 

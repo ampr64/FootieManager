@@ -1,8 +1,9 @@
-﻿using Core.Entities;
+﻿using Core.Common;
+using Core.Entities;
 
 namespace Core.Services
 {
-    public interface IRefereeService : IService<Referee, int>
+    public interface IRefereeService : IEntityService<Referee, int>
     {
         
     }
