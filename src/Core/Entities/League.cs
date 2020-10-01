@@ -1,7 +1,7 @@
-﻿using Domain.Common;
+﻿using Core.Common;
 using System.Collections.Generic;
 
-namespace Domain.Entities
+namespace Core.Entities
 {
     public class League : Entity<int>
     {

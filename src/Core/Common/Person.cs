@@ -1,7 +1,7 @@
-﻿using Domain.Entities;
+﻿using Core.Entities;
 using System;
 
-namespace Domain.Common
+namespace Core.Common
 {
     public abstract class Person : Entity<int>
     {

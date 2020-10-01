@@ -1,7 +1,7 @@
-﻿using Domain.Common;
+﻿using Core.Common;
 using System;
 
-namespace Domain.Entities
+namespace Core.Entities
 {
     public class Coach : Person
     {

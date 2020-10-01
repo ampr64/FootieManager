@@ -1,8 +1,8 @@
-﻿using Domain.Common;
-using Domain.Enumerations;
+﻿using Core.Common;
+using Core.Enumerations;
 using System;
 
-namespace Domain.Entities
+namespace Core.Entities
 {
     public class Player : Person
     {
