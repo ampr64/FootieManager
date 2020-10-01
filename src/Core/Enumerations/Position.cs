@@ -1,6 +1,6 @@
-﻿using Domain.Common;
+﻿using Core.Common;
 
-namespace Domain.Enumerations
+namespace Core.Enumerations
 {
     public class Position : Enumeration
     {

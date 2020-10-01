@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json;
 
-namespace Domain.Extensions
+namespace Core.Extensions
 {
     public static class JsonExtensions
     {
