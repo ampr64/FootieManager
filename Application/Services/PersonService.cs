@@ -1,12 +1,9 @@
 ﻿using Core.Common;
-using Core.Services;
-using Domain.Common;
-using Domain.Data;
 using System;
 
 namespace Application.Services
 {
-    public class PersonService<TPerson> : ApplicationService<TPerson, int>, IPersonService<TPerson>
+    public abstract class PersonService<TPerson> : ApplicationService<TPerson, int>, IPersonService<TPerson>
         where TPerson : Person
     {
         public PersonService(IUnitOfWork unitOfWork, IRepository<TPerson, int> repository)

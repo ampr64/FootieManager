@@ -1,8 +1,4 @@
-﻿using Application.Common;
-using Core.Common;
-using Core.Services;
-using Domain.Common;
-using Domain.Data;
+﻿using Core.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -10,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
-    public abstract class ApplicationService<TEntity, TId> : IService<TEntity, TId>
+    public abstract class ApplicationService<TEntity, TId> : IEntityService<TEntity, TId>
         where TEntity : Entity<TId>
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -28,7 +24,7 @@ namespace Application.Services
 
         public virtual async Task<IReadOnlyList<TEntity>> GetAllAsync() => await _repository.ListAllAsync();
 
-        public virtual async Task<IReadOnlyList<TEntity>> FilterAsync(Expression<Func<TEntity, bool>> filter) => await _repository.ListAsync(filter);
+        public virtual async Task<IReadOnlyList<TEntity>> GetAsync(Expression<Func<TEntity, bool>> filter) => await _repository.ListAsync(filter);
 
         public virtual async Task NewAsync(TEntity entity)
         {
@@ -54,8 +50,8 @@ namespace Application.Services
             await _unitOfWork.CommitChangesAsync();
         }
 
-        protected async Task<IReadOnlyList<TEntity>> FilterAsync(Expression<Func<TEntity, bool>> filter, string navigationProperties) =>
-            await _repository.ListAsync(filter, navigationProperties);
+        protected async Task<IReadOnlyList<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate, string navigationProperties) =>
+            await _repository.ListAsync(predicate, navigationProperties);
 
         protected async Task<IReadOnlyList<TEntity>> GetAllAsync(string navigationProperties) =>
             await _repository.ListAllAsync(navigationProperties);
