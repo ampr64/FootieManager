@@ -25,12 +25,14 @@ namespace Api
             {
                 config.SwaggerDoc("v1", new OpenApiInfo { Title = "FootieManager App", Version = "v1" });
             });
+            services.AddSwaggerGenNewtonsoftSupport();
 
             services.AddApplication();
 
             services.AddInfrastructure(Configuration);
 
-            services.AddControllers();
+            services.AddControllers()
+                    .AddNewtonsoftJson();
 
             services.AddCors();
         }
