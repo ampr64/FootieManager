@@ -8,7 +8,9 @@ namespace Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Club> builder)
         {
-            
+            builder.HasOne(c => c.Coach)
+                .WithOne(c => c.Club)
+                .HasForeignKey<Coach>(c => c.ClubId);
         }
     }
 }
