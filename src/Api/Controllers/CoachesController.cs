@@ -8,11 +8,11 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CoachsController : ControllerBase
+    public class CoachesController : ControllerBase
     {
         private readonly ICoachService _service;
 
-        public CoachsController(ICoachService coachService)
+        public CoachesController(ICoachService coachService)
         {
             _service = coachService;
         }
