@@ -10,6 +10,8 @@ namespace Core.Entities
 
         public Club Club { get; set; }
 
+        public int PositionId { get; set; }
+
         public Position Position { get; set; }
 
         public decimal Height { get; set; }
@@ -19,6 +21,8 @@ namespace Core.Entities
         public decimal Salary { get; set; }
 
         public decimal MarketValue { get; set; }
+
+        public int FootId { get; set; }
 
         public Foot Foot { get; set; }
 

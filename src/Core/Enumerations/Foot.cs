@@ -4,10 +4,10 @@ namespace Core.Enumerations
 {
     public class Foot : Enumeration
     {
-        public static Enumeration Right = new Foot(1, nameof(Right));
-        public static Enumeration Left = new Foot(2, nameof(Left));
+        public static Foot Right = new Foot(1, nameof(Right));
+        public static Foot Left = new Foot(2, nameof(Left));
 
-        private Foot(int value, string name) : base(value, name)
+        private Foot(int id, string name) : base(id, name)
         {
         }
     }
