@@ -8,8 +8,6 @@ namespace Core.Services
 {
     public interface IPlayerService : IPersonService<Player>
     {
-        Task<IReadOnlyList<Position>> ListAllPositions();
-
-        Task<Player> GetHighestPaidPlayerInTheWorld();
+        Task<Player> GetHighestPaidPlayerInTheWorldAsync();
     }
 }
