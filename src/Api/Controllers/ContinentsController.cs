@@ -8,41 +8,41 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PlayersController : ControllerBase
+    public class ContinentsController : ControllerBase
     {
-        private readonly IPlayerService _service;
+        private readonly IContinentService _service;
 
-        public PlayersController(IPlayerService playerService)
+        public ContinentsController(IContinentService continentService)
         {
-            _service = playerService;
+            _service = continentService;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Player>> Get()
+        public async Task<IEnumerable<Continent>> Get()
         {
             return await _service.GetAllAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<Player> Get(int id)
+        public async Task<Continent> Get(int id)
         {
             return await _service.GetByIdAsync(id);
         }
 
         [HttpPost]
-        public async Task<IActionResult> New([FromBody] Player player)
+        public async Task<IActionResult> New([FromBody] Continent continent)
         {
-            await _service.NewAsync(player);
-            return CreatedAtAction(nameof(Get), new { id = player.Id }, player);
+            await _service.NewAsync(continent);
+            return CreatedAtAction(nameof(Get), new { id = continent.Id }, continent);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Player player)
+        public async Task<IActionResult> Update(int id, [FromBody] Continent continent)
         {
-            if (id != player.Id)
+            if (id != continent.Id)
                 return BadRequest();
 
-            await _service.UpdateAsync(player);
+            await _service.UpdateAsync(continent);
             return NoContent();
         }
 

@@ -8,41 +8,41 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PlayersController : ControllerBase
+    public class CoachsController : ControllerBase
     {
-        private readonly IPlayerService _service;
+        private readonly ICoachService _service;
 
-        public PlayersController(IPlayerService playerService)
+        public CoachsController(ICoachService coachService)
         {
-            _service = playerService;
+            _service = coachService;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Player>> Get()
+        public async Task<IEnumerable<Coach>> Get()
         {
             return await _service.GetAllAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<Player> Get(int id)
+        public async Task<Coach> Get(int id)
         {
             return await _service.GetByIdAsync(id);
         }
 
         [HttpPost]
-        public async Task<IActionResult> New([FromBody] Player player)
+        public async Task<IActionResult> New([FromBody] Coach coach)
         {
-            await _service.NewAsync(player);
-            return CreatedAtAction(nameof(Get), new { id = player.Id }, player);
+            await _service.NewAsync(coach);
+            return CreatedAtAction(nameof(Get), new { id = coach.Id }, coach);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Player player)
+        public async Task<IActionResult> Update(int id, [FromBody] Coach coach)
         {
-            if (id != player.Id)
+            if (id != coach.Id)
                 return BadRequest();
 
-            await _service.UpdateAsync(player);
+            await _service.UpdateAsync(coach);
             return NoContent();
         }
 

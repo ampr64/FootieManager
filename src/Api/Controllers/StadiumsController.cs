@@ -8,41 +8,41 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PlayersController : ControllerBase
+    public class StadiumsController : ControllerBase
     {
-        private readonly IPlayerService _service;
+        private readonly IStadiumService _service;
 
-        public PlayersController(IPlayerService playerService)
+        public StadiumsController(IStadiumService stadiumService)
         {
-            _service = playerService;
+            _service = stadiumService;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Player>> Get()
+        public async Task<IEnumerable<Stadium>> Get()
         {
             return await _service.GetAllAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<Player> Get(int id)
+        public async Task<Stadium> Get(int id)
         {
             return await _service.GetByIdAsync(id);
         }
 
         [HttpPost]
-        public async Task<IActionResult> New([FromBody] Player player)
+        public async Task<IActionResult> New([FromBody] Stadium stadium)
         {
-            await _service.NewAsync(player);
-            return CreatedAtAction(nameof(Get), new { id = player.Id }, player);
+            await _service.NewAsync(stadium);
+            return CreatedAtAction(nameof(Get), new { id = stadium.Id }, stadium);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Player player)
+        public async Task<IActionResult> Update(int id, [FromBody] Stadium stadium)
         {
-            if (id != player.Id)
+            if (id != stadium.Id)
                 return BadRequest();
 
-            await _service.UpdateAsync(player);
+            await _service.UpdateAsync(stadium);
             return NoContent();
         }
 

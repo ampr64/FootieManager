@@ -8,41 +8,41 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PlayersController : ControllerBase
+    public class RefereesController : ControllerBase
     {
-        private readonly IPlayerService _service;
+        private readonly IRefereeService _service;
 
-        public PlayersController(IPlayerService playerService)
+        public RefereesController(IRefereeService refereeService)
         {
-            _service = playerService;
+            _service = refereeService;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Player>> Get()
+        public async Task<IEnumerable<Referee>> Get()
         {
             return await _service.GetAllAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<Player> Get(int id)
+        public async Task<Referee> Get(int id)
         {
             return await _service.GetByIdAsync(id);
         }
 
         [HttpPost]
-        public async Task<IActionResult> New([FromBody] Player player)
+        public async Task<IActionResult> New([FromBody] Referee referee)
         {
-            await _service.NewAsync(player);
-            return CreatedAtAction(nameof(Get), new { id = player.Id }, player);
+            await _service.NewAsync(referee);
+            return CreatedAtAction(nameof(Get), new { id = referee.Id }, referee);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Player player)
+        public async Task<IActionResult> Update(int id, [FromBody] Referee referee)
         {
-            if (id != player.Id)
+            if (id != referee.Id)
                 return BadRequest();
 
-            await _service.UpdateAsync(player);
+            await _service.UpdateAsync(referee);
             return NoContent();
         }
 
