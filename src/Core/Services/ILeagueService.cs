@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Core.Services
 {
-    public interface ILeagueService : IEntityService<League, int>
+    public interface ILeagueService : IService<League, int>
     {
         Task<Player> GetTopScorer(int leagueId);
 
@@ -23,8 +23,6 @@ namespace Core.Services
 
         Task<Club> GetClubWithLowestAgeAverage(int leagueId);
 
-        Task<IReadOnlyList<Club>> GetClubsByLeague(int leagueId);
-
-        Task<Stadium> GetStadiumWithHighestCapacity(int leagueId);
+        Task<IReadOnlyList<Club>> GetClubs(int leagueId);
     }
 }

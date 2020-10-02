@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 
 namespace Core.Services
 {
-    public interface IClubService : IEntityService<Club, int>
+    public interface IClubService : IService<Club, int>
     {
-        Task<int> GoalsFor();
+        Task<int> GoalsFor(int clubId);
 
-        Task<int> GoalsAgainst(); 
+        Task<int> GoalsAgainst(int clubId); 
     }
 }

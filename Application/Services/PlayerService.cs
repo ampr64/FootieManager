@@ -1,4 +1,5 @@
-﻿using Core.Common;
+﻿using Application.Common;
+using Core.Common;
 using Core.Data;
 using Core.Entities;
 using Core.Enumerations;
@@ -19,8 +20,8 @@ namespace Application.Services
         public async Task<Player> GetHighestPaidPlayerInTheWorld()
         {
             var players = await _repository.ListAllAsync();
-            return players.OrderBy(p => p.Salary).Take(1)
-                .SingleOrDefault();
+            return players.OrderByDescending(p => p.Salary)
+                .FirstOrDefault();
         }
 
         public Task<IReadOnlyList<Position>> ListAllPositions()

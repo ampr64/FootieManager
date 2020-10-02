@@ -1,7 +1,8 @@
-﻿using Core.Common;
+﻿using Application.Common;
+using Core.Common;
 using System;
 
-namespace Application.Services
+namespace Application.Common
 {
     public abstract class PersonService<TPerson> : ApplicationService<TPerson, int>, IPersonService<TPerson>
         where TPerson : Person

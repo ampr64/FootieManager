@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Core.Services
 {
-    public interface IStadiumService : IEntityService<Stadium, int>
+    public interface IStadiumService : IService<Stadium, int>
     {
         Task<Stadium> GetStadiumWithHighestCapacityInTheWorld();
 

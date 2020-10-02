@@ -3,7 +3,7 @@ using Core.Entities;
 
 namespace Core.Services
 {
-    public interface ICountryService : IEntityService<Country, int>
+    public interface ICountryService : IService<Country, int>
     {
         
     }

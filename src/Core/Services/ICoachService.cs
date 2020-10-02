@@ -3,7 +3,7 @@ using Core.Entities;
 
 namespace Core.Services
 {
-    public interface ICoachService : IEntityService<Coach, int>
+    public interface ICoachService : IService<Coach, int>
     {
         
     }

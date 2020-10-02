@@ -3,7 +3,7 @@ using Core.Entities;
 
 namespace Core.Services
 {
-    public interface IRefereeService : IEntityService<Referee, int>
+    public interface IRefereeService : IService<Referee, int>
     {
         
     }

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Application.Services
+namespace Application.Common
 {
-    public abstract class ApplicationService<TEntity, TId> : IEntityService<TEntity, TId>
+    public abstract class ApplicationService<TEntity, TId> : IService<TEntity, TId>
         where TEntity : Entity<TId>
     {
         private readonly IUnitOfWork _unitOfWork;
