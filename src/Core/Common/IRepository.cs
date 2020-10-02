@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace Core.Common
 {
-    public interface IRepository<TEntity, TId> where TEntity : Entity<TId>
+    public interface IRepository<TEntity, TId>
+        where TEntity : Entity<TId>
     {
         Task<TEntity> FindAsync(TId id, params Expression<Func<TEntity, object>>[] includeProperties);
         Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includeProperties);

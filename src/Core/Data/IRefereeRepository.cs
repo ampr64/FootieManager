@@ -1,6 +1,9 @@
-﻿namespace Core.Data
+﻿using Core.Common;
+using Core.Entities;
+
+namespace Core.Data
 {
-    public interface IRefereeRepository
+    public interface IRefereeRepository : IRepository<Referee, int>
     {
         
     }

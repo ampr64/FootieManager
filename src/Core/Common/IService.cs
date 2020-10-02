@@ -1,12 +1,11 @@
-﻿using Core.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Core.Common
 {
-    public interface IEntityService<TEntity, TId>
+    public interface IService<TEntity, TId>
         where TEntity : Entity<TId>
     {
         Task NewAsync(TEntity entity);
