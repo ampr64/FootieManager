@@ -17,6 +17,10 @@ namespace Core.Common
 
         public string PictureUrl { get; private set; }
 
+        protected Person()
+        {
+        }
+
         protected Person(string firstName, string lastName, int countryId, DateTime birthDate, string pictureUrl)
         {
             FirstName = firstName;

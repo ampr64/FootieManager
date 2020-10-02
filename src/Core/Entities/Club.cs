@@ -9,11 +9,9 @@ namespace Core.Entities
 
         public League League { get; set; }
 
-        public int OwnerId { get; set; }
+        public string Owner { get; set; }
 
-        public Owner Owner { get; set; }
-
-        public int ManagerId { get; set; }
+        public int CoachId { get; set; }
 
         public Coach Coach { get; set; }
 
