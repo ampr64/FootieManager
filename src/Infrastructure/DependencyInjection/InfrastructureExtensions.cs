@@ -5,7 +5,6 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Linq;
 using System.Reflection;
 
@@ -24,7 +23,7 @@ namespace Infrastructure.DependencyInjection
             {
                 container.AddDbContext<FootieDataManagerContext>(options =>
                     options.UseSqlServer(
-                        configuration.GetConnectionString("FootieManagerDb"),
+                        configuration.GetConnectionString("FootieDataManagerDb"),
                         b => b.MigrationsAssembly(typeof(FootieDataManagerContext).Assembly.FullName)));
             }
 
