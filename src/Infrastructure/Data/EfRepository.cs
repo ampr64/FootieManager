@@ -11,7 +11,6 @@ namespace Infrastructure.Data
 {
     public abstract class EfRepository<TEntity, TId> : IRepository<TEntity, TId>
         where TEntity : Entity<TId>
-        where TId : IEquatable<TId>
     {
         protected readonly FootieDataManagerContext _dbContext;
 
