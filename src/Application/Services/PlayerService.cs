@@ -18,7 +18,7 @@ namespace Application.Services
         public async Task<Player> GetHighestPaidPlayerInTheWorldAsync()
         {
             var players = await _repository.ListAllAsync();
-            return players.OrderByDescending(p => p.Salary)
+            return players.OrderByDescending(p => p.YearlySalary)
                 .FirstOrDefault();
         }
     }
