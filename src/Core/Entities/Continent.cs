@@ -8,5 +8,12 @@ namespace Core.Entities
         public string Name { get; set; }
 
         public IList<Country> Countries { get; set; }
+
+        public Continent() { }
+
+        public Continent(string name)
+        {
+            Name = name;
+        }
     }
 }

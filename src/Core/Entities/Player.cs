@@ -1,5 +1,5 @@
 ﻿using Core.Common;
-using Core.Enumerations;
+using Core.Enums;
 using System;
 
 namespace Core.Entities
@@ -8,9 +8,7 @@ namespace Core.Entities
     {
         public int ClubId { get; set; }
 
-        public Club Club { get; set; }
-
-        public int PositionId { get; set; }
+        public virtual Club Club { get; set; }
 
         public Position Position { get; set; }
 
@@ -18,11 +16,9 @@ namespace Core.Entities
 
         public decimal Weight { get; set; }
 
-        public decimal Salary { get; set; }
+        public decimal YearlySalary { get; set; }
 
         public decimal MarketValue { get; set; }
-
-        public int FootId { get; set; }
 
         public Foot Foot { get; set; }
 
@@ -36,7 +32,7 @@ namespace Core.Entities
         {
         }
         
-        public Player(string firstName, string lastName, int countryId, DateTime birthDate, string pictureUrl)
+        public Player(string firstName, string lastName, int countryId, DateTime birthDate, string pictureUrl = null)
             : base(firstName, lastName, countryId, birthDate, pictureUrl)
         {
         }

@@ -12,5 +12,13 @@ namespace Core.Entities
         public Country Country { get; set; }
 
         public IList<Club> Clubs { get; set; }
+
+        private League() { }
+
+        public League(string name, int countryId)
+        {
+            Name = name;
+            CountryId = countryId;
+        }
     }
 }

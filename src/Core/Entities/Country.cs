@@ -14,5 +14,14 @@ namespace Core.Entities
         public string FlagUrl { get; set; }
 
         public IList<League> Leagues { get; set; }
+
+        public Country() { }
+
+        public Country(string name, int continentId, string flagUrl = null)
+        {
+            Name = name;
+            ContinentId = continentId;
+            FlagUrl = flagUrl;
+        }
     }
 }

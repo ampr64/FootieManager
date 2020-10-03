@@ -11,6 +11,10 @@ namespace Infrastructure.Data.Configurations
             builder.HasOne(c => c.Coach)
                 .WithOne(c => c.Club)
                 .HasForeignKey<Coach>(c => c.ClubId);
+
+            builder.HasOne(c => c.Stadium)
+                .WithOne(s => s.Club)
+                .HasForeignKey<Stadium>(s => s.ClubId);
         }
     }
 }
