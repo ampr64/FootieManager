@@ -8,7 +8,7 @@ namespace Core.Entities
     {
         public int ClubId { get; set; }
 
-        public virtual Club Club { get; set; }
+        public Club Club { get; set; }
 
         public Position Position { get; set; }
 
