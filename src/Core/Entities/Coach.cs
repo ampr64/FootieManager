@@ -5,7 +5,7 @@ namespace Core.Entities
 {
     public class Coach : Person
     {
-        public int ClubId { get; set; }
+        public int? ClubId { get; set; }
 
         public Club Club { get; set; }
 

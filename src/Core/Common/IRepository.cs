@@ -18,7 +18,7 @@ namespace Core.Common
         Task<bool> AllAsync(Expression<Func<TEntity, bool>> predicate);
         Task<bool> ContainsAsync(TEntity entity);
         Task ForEachAsync(Action<TEntity> action);
-        Task<TEntity> AddAsync(TEntity entity);
+        Task AddAsync(TEntity entity);
         Task UpdateAsync(TEntity entity);
         Task RemoveAsync(TEntity entity);
         Task RemoveAsync(TId id);

@@ -19,10 +19,10 @@ namespace Infrastructure.Data
             _dbContext = context;
         }
 
-        public async Task<TEntity> AddAsync(TEntity entity)
+        public Task AddAsync(TEntity entity)
         {
-            await _dbContext.AddAsync(entity);
-            return entity;
+            _dbContext.Entry(entity).State = EntityState.Added;
+            return Task.CompletedTask;
         }
 
         public async Task<bool> AllAsync(Expression<Func<TEntity, bool>> predicate)
