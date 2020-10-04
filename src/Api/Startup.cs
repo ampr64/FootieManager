@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Api
 {
@@ -32,7 +34,14 @@ namespace Api
             services.AddInfrastructure(Configuration);
 
             services.AddControllers()
-                    .AddNewtonsoftJson();
+                    .AddNewtonsoftJson(opts =>
+                    {
+                        opts.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                        opts.SerializerSettings.ContractResolver = new DefaultContractResolver
+                            {
+                                NamingStrategy = new SnakeCaseNamingStrategy()
+                            };
+                    });
 
             services.AddCors();
         }
