@@ -12,29 +12,29 @@ namespace Core.Entities
 
         public Position Position { get; set; }
 
-        public decimal Height { get; set; }
+        public int Height { get; set; }
 
-        public decimal Weight { get; set; }
+        public int Weight { get; set; }
 
-        public decimal YearlySalary { get; set; }
+        public decimal? Salary { get; set; }
 
         public decimal MarketValue { get; set; }
 
         public Foot Foot { get; set; }
 
-        public int Appearances { get; set; }
-
-        public int GoalCount { get; set; }
-
-        public int AssistCount { get; set; }
-
         public Player()
         {
         }
         
-        public Player(string firstName, string lastName, int countryId, DateTime birthDate, string pictureUrl = null)
+        public Player(string firstName, string lastName, int countryId, DateTime birthDate, int height, int weight,
+            decimal marketValue, string pictureUrl = null, Foot foot = Foot.Right, int? clubId = null, decimal? salary = null)
             : base(firstName, lastName, countryId, birthDate, pictureUrl)
         {
+            ClubId = clubId;
+            Height = height;
+            Weight = weight;
+            MarketValue = marketValue;
+            Salary = salary;
         }
     }
 }

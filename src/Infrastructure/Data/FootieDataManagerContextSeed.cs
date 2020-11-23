@@ -135,7 +135,7 @@ namespace Infrastructure.Data
                     Appearances = 38,
                     ClubId = 4,
                     MarketValue = 112000000,
-                    YearlySalary = 80000000
+                    Salary = 80000000
                 },
                 new Player("Matías", "Suárez", 1, new DateTime(1990, 2, 21))
                 {
@@ -147,7 +147,7 @@ namespace Infrastructure.Data
                     Appearances = 33,
                     ClubId = 1,
                     MarketValue = 10000000,
-                    YearlySalary = 20000
+                    Salary = 20000
                 },
                 new Player("Neymar", "Jr", 2, new DateTime(1992, 2, 2))
                 {
@@ -159,7 +159,7 @@ namespace Infrastructure.Data
                     Appearances = 36,
                     ClubId = 3,
                     MarketValue = 130000000,
-                    YearlySalary = 40000000
+                    Salary = 40000000
                 },
             };
         }

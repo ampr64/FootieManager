@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace Core.Common
+﻿namespace Core.Common
 {
-    public abstract class Entity<TId>
+    public abstract class Entity
     {
-        public TId Id { get; set; }
+        public int Id { get; set; }
     }
 }

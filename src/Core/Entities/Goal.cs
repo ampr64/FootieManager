@@ -3,9 +3,9 @@ using Core.Enumerations;
 
 namespace Core.Entities
 {
-    public class Goal : Entity<long>
+    public class Goal : Entity
     {
-        public long MatchId { get; set; }
+        public int FixtureId { get; set; }
 
         public Player ScoredBy { get; set; }
         

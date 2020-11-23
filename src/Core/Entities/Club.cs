@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Entities
 {
-    public class Club : Entity<int>
+    public class Club : Entity
     {
         public string Name { get; set; }
 
@@ -11,13 +11,13 @@ namespace Core.Entities
 
         public League League { get; set; }
 
-        public string Chairman { get; set; }
+        public string Owner { get; set; }
 
         public int? CoachId { get; set; }
 
         public Coach Coach { get; set; }
 
-        public int? StadiumId { get; set; }
+        public int StadiumId { get; set; }
 
         public Stadium Stadium { get; set; }
 
@@ -25,15 +25,22 @@ namespace Core.Entities
 
         public int TrophyCount { get; set; }
 
-        public IList<Player> Squad { get; set; }
+        public List<Player> Squad { get; set; } = new();
 
         public Club() { }
 
-        public Club(string name, int leagueId, string chairman, int yearFounded, int trophyCount, int? stadiumId, int? coachId)
+        public Club(
+            string name,
+            int leagueId,
+            string owner,
+            int yearFounded,
+            int trophyCount,
+            int stadiumId,
+            int? coachId = null)
         {
             Name = name;
             LeagueId = leagueId;
-            Chairman = chairman;
+            Owner = owner;
             CoachId = coachId;
             YearFounded = yearFounded;
             TrophyCount = trophyCount;

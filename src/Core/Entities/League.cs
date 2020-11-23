@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Entities
 {
-    public class League : Entity<int>
+    public class League : Entity
     {
         public string Name { get; set; }
 
@@ -11,7 +11,7 @@ namespace Core.Entities
 
         public Country Country { get; set; }
 
-        public IList<Club> Clubs { get; set; }
+        public List<Club> Clubs { get; set; } = new();
 
         private League() { }
 

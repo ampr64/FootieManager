@@ -13,8 +13,8 @@ namespace Infrastructure.Data.Configurations
                 .HasForeignKey<Coach>(c => c.ClubId);
 
             builder.HasOne(c => c.Stadium)
-                .WithOne(s => s.Club)
-                .HasForeignKey<Stadium>(s => s.ClubId);
+                .WithMany(s => s.Clubs)
+                .HasForeignKey(c => c.StadiumId);
         }
     }
 }

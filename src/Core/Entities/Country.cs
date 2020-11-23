@@ -1,9 +1,10 @@
 ﻿using Core.Common;
+using Core.Enumerations;
 using System.Collections.Generic;
 
 namespace Core.Entities
 {
-    public class Country : Entity<int>
+    public class Country : Entity
     {
         public string Name { get; set; }
 
@@ -13,7 +14,7 @@ namespace Core.Entities
 
         public string FlagUrl { get; set; }
 
-        public IList<League> Leagues { get; set; }
+        public List<League> Leagues { get; set; } = new();
 
         public Country() { }
 

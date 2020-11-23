@@ -1,14 +1,13 @@
 ﻿using Core.Common;
+using System.Collections.Generic;
 
 namespace Core.Entities
 {
-    public class Stadium : Entity<int>
+    public class Stadium : Entity
     {
         public string Name { get; set; }
 
-        public int? ClubId { get; set; }
-
-        public Club Club { get; set; }
+        public List<Club> Clubs { get; set; } = new();
 
         public int Capacity { get; set; }
 
@@ -16,12 +15,11 @@ namespace Core.Entities
 
         public Stadium() { }
 
-        public Stadium(string name, int capacity, int yearbuilt, int? clubId)
+        public Stadium(string name, int capacity, int yearbuilt)
         {
             Name = name;
             Capacity = capacity;
             YearBuilt = yearbuilt;
-            ClubId = clubId;
         }
     }
 }

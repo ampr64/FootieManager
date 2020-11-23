@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Entities;
-using Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
@@ -10,8 +9,6 @@ namespace Api.Controllers
     [ApiController]
     public class ClubsController : ControllerBase
     {
-        private readonly IClubService _service;
-
         public ClubsController(IClubService clubService)
         {
             _service = clubService;

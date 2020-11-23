@@ -3,7 +3,7 @@ using System;
 
 namespace Core.Common
 {
-    public abstract class Person : Entity<int>
+    public abstract class Person : Entity
     {
         public string FirstName { get; set; }
         
