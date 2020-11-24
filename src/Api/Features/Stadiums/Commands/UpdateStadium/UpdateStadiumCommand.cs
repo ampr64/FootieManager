@@ -1,9 +1,11 @@
 ﻿using MediatR;
 
-namespace Api.Features.Stadiums.Commands
+namespace Api.Features.Stadiums.Commands.UpdateStadium
 {
-    public abstract class StadiumWriteCommandBase<TResponse> : IRequest<TResponse>
+    public class UpdateStadiumCommand : IRequest
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public int Capacity { get; set; }

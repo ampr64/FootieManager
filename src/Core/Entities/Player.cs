@@ -27,12 +27,15 @@ namespace Core.Entities
         }
         
         public Player(string firstName, string lastName, int countryId, DateTime birthDate, int height, int weight,
-            decimal marketValue, string pictureUrl = null, Foot foot = Foot.Right, int? clubId = null, decimal? salary = null)
+            decimal marketValue, Position position, string pictureUrl = null, Foot foot = Foot.Right, int? clubId = null,
+            decimal? salary = null)
             : base(firstName, lastName, countryId, birthDate, pictureUrl)
         {
             ClubId = clubId;
             Height = height;
             Weight = weight;
+            Foot = foot;
+            Position = position;
             MarketValue = marketValue;
             Salary = salary;
         }

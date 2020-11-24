@@ -20,13 +20,27 @@ namespace Api.Features.Players.Commands.UpdatePlayer
             if (player is null)
                 throw new NotFoundException(nameof(Coach), request.Id);
 
-            player.FirstName = request.FirstName;
-            player.LastName = request.LastName;
-            player.PictureUrl = request.PictureUrl;
-            player.ClubId = request.ClubId;
-            player.Salary = request.Salary;
+            UpdateValues(player, request);
+
+            await _context.CommitChangesAsync(cancellationToken);
 
             return Unit.Value;
+        }
+
+        private void UpdateValues(Player player, UpdatePlayerCommand request)
+        {
+            player.FirstName = request.FirstName;
+            player.LastName = request.LastName;
+            player.CountryId = request.CountryId;
+            player.BirthDate = request.BirthDate;
+            player.Height = request.Height;
+            player.Weight = request.Weight;
+            player.MarketValue = request.MarketValue;
+            player.PictureUrl = request.PictureUrl;
+            player.Foot = request.Foot;
+            player.Position = request.Position;
+            player.ClubId = request.ClubId;
+            player.Salary = request.Salary;
         }
     }
 }

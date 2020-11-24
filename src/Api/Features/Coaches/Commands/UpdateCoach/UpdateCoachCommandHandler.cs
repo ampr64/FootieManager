@@ -26,6 +26,8 @@ namespace Api.Features.Coaches.Commands.UpdateCoach
             coach.ClubId = request.ClubId;
             coach.Salary = request.Salary;
 
+            await _context.CommitChangesAsync(cancellationToken);
+
             return Unit.Value;
         }
     }
