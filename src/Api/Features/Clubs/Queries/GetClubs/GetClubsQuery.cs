@@ -1,7 +1,8 @@
-﻿namespace Api.Features.Clubs.Queries.GetClubs
+﻿using MediatR;
+
+namespace Api.Features.Clubs.Queries.GetClubs
 {
-    public class GetClubsQuery
+    public class GetClubsQuery : IRequest<GetClubsVm>
     {
-        
     }
 }

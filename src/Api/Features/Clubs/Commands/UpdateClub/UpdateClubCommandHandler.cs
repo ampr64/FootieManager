@@ -28,6 +28,7 @@ namespace Api.Features.Clubs.Commands.UpdateClubDetails
             club.StadiumId = request.StadiumId;
             club.TrophyCount = request.TrophyCount;
             club.YearFounded = request.YearFounded;
+            club.BadgeImageUrl = request.BadgeImageUrl;
 
             await _context.CommitChangesAsync(cancellationToken);
 
