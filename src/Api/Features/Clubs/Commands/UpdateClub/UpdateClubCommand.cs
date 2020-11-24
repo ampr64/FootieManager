@@ -19,5 +19,7 @@ namespace Api.Features.Clubs.Commands.UpdateClub
         public int YearFounded { get; set; }
 
         public int TrophyCount { get; set; }
+
+        public string BadgeImageUrl { get; set; }
     }
 }

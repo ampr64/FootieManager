@@ -21,7 +21,8 @@ namespace Api.Features.Clubs.Commands.NewClub
                 request.YearFounded,
                 request.TrophyCount,
                 request.StadiumId,
-                request.CoachId);
+                request.CoachId,
+                request.BadgeImageUrl);
 
             await _context.Clubs.AddAsync(newClub, cancellationToken);
 
