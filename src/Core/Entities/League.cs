@@ -11,14 +11,17 @@ namespace Core.Entities
 
         public Country Country { get; set; }
 
+        public string LogoImageUrl { get; set; }
+
         public List<Club> Clubs { get; set; } = new();
 
         private League() { }
 
-        public League(string name, int countryId)
+        public League(string name, int countryId, string logoImageUrl = null)
         {
             Name = name;
             CountryId = countryId;
+            LogoImageUrl = logoImageUrl;
         }
     }
 }

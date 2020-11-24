@@ -25,6 +25,8 @@ namespace Core.Entities
 
         public int TrophyCount { get; set; }
 
+        public string BadgeImageUrl { get; set; }
+
         public List<Player> Squad { get; set; } = new();
 
         public Club() { }
@@ -36,7 +38,8 @@ namespace Core.Entities
             int yearFounded,
             int trophyCount,
             int stadiumId,
-            int? coachId = null)
+            int? coachId = null,
+            string badgeImageUrl = null)
         {
             Name = name;
             LeagueId = leagueId;
@@ -46,6 +49,7 @@ namespace Core.Entities
             TrophyCount = trophyCount;
             StadiumId = stadiumId;
             CoachId = coachId;
+            BadgeImageUrl = badgeImageUrl;
         }
     }
 }
