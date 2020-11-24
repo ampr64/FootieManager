@@ -1,9 +1,10 @@
 ﻿using Core.Enums;
+using MediatR;
 using System;
 
 namespace Api.Features.Players.Commands.NewPlayer
 {
-    public class NewPlayerCommand
+    public class NewPlayerCommand : IRequest<int>
     {
         public string FirstName { get; set; }
 

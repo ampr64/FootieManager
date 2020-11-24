@@ -7,27 +7,25 @@ namespace Core.Common
 {
     public abstract class Enumeration : IComparable, IEquatable<Enumeration>
     {
-        public int Id { get; private set; }
+        public int Value { get; private set; }
 
         public string Name { get; private set; }
 
         protected Enumeration(int value, string name)
         {
-            Id = value;
+            Value = value;
             Name = name;
         }
 
         public override string ToString() => Name;
 
-        public static IReadOnlyList<T> GetAll<T>() where T : Enumeration =>
+        public static IEnumerable<T> GetAll<T>() where T : Enumeration =>
             typeof(T).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly)
                 .Select(f => f.GetValue(null))
-                .Cast<T>()
-                .ToList()
-                .AsReadOnly();
+                .Cast<T>();
 
         public static T FromValue<T>(int value) where T : Enumeration =>
-            Parse<T, int>(value, nameof(value), item => item.Id == value);
+            Parse<T, int>(value, nameof(value), item => item.Value == value);
 
         public static T FromName<T>(string name) where T : Enumeration =>
             Parse<T, string>(name, nameof(name), item => item.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
@@ -48,11 +46,11 @@ namespace Core.Common
         public override bool Equals(object obj) =>
             obj != null
             && obj.GetType() == GetType()
-            && Id.Equals(((Enumeration)obj).Id);
+            && Value.Equals(((Enumeration)obj).Value);
 
-        public override int GetHashCode() => Id.GetHashCode();
+        public override int GetHashCode() => Value.GetHashCode();
 
-        public int CompareTo(object obj) => Id.CompareTo(((Enumeration)obj).Id);
+        public int CompareTo(object obj) => Value.CompareTo(((Enumeration)obj).Value);
 
         private static T Parse<T, TProperty>(TProperty propertyValue, string propertyName, Func<T, bool> predicate) where T : Enumeration =>
             GetAll<T>().FirstOrDefault(predicate)

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Api.Configuration.Mappings
+namespace Api.Common.Mappings
 {
     public interface IDto<T>
     {

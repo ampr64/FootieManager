@@ -1,4 +1,4 @@
-﻿using Api.Configuration.Mappings;
+﻿using Api.Common.Mappings;
 using Core.Entities;
 
 namespace Api.Features.Clubs.Queries

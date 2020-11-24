@@ -1,9 +1,13 @@
-﻿using Core.Entities;
+﻿using Core.Common;
+using Core.Entities;
+using Core.Enumerations;
 using Microsoft.EntityFrameworkCore;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Infrastructure.Data
 {
-    public class FootieDataManagerContext : DbContext
+    public class FootieDataManagerContext : DbContext, IApplicationDbContext
     {
         public DbSet<Club> Clubs { get; set; }
         public DbSet<Coach> Coaches { get; set; }
@@ -11,7 +15,6 @@ namespace Infrastructure.Data
         public DbSet<Country> Countries { get; set; }
         public DbSet<League> Leagues { get; set; }
         public DbSet<Player> Players { get; set; }
-        public DbSet<Referee> Referees { get; set; }
         public DbSet<Stadium> Stadiums { get; set; }
 
         public FootieDataManagerContext(DbContextOptions options)
@@ -22,7 +25,12 @@ namespace Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.ApplyConfigurationsFromAssembly(typeof(FootieDataManagerContext).Assembly);
+            builder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+        }
+
+        public async Task<int> CommitChangesAsync(CancellationToken cancellationToken = default)
+        {
+            return await SaveChangesAsync(cancellationToken);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Api.Features.Leagues.Commands.UpdateLeague
     {
         private readonly IApplicationDbContext _context;
 
-        public IApplicationDbContext Context => _context;
+        public UpdateLeagueCommandHandler(IApplicationDbContext context) => _context = context;
 
         public async Task<Unit> Handle(UpdateLeagueCommand request, CancellationToken cancellationToken)
         {

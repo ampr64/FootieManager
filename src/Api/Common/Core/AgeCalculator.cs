@@ -1,7 +1,7 @@
 ﻿using Core.Common;
 using System;
 
-namespace Api.Domain
+namespace Api.Common.Core
 {
     public class AgeCalculator : IAgeCalculator
     {

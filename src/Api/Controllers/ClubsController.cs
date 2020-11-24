@@ -1,52 +1,50 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Core.Entities;
+﻿using Api.Features.Clubs.Commands.DeleteClub;
+using Api.Features.Clubs.Commands.NewClub;
+using Api.Features.Clubs.Commands.UpdateClub;
+using Api.Features.Clubs.Queries;
+using Api.Features.Clubs.Queries.GetClubDetail;
+using Api.Features.Clubs.Queries.GetClubs;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ClubsController : ControllerBase
+    public class ClubsController : ApiController
     {
-        public ClubsController(IClubService clubService)
-        {
-            _service = clubService;
-        }
-
         [HttpGet]
-        public async Task<IEnumerable<Club>> Get()
+        public async Task<ActionResult<GetClubsVm>> List([FromQuery] GetClubsQuery query)
         {
-            return await _service.GetAllAsync();
+            return await Mediator.Send(query);
         }
 
         [HttpGet("{id}")]
-        public async Task<Club> Get(int id)
+        public async Task<ActionResult<ClubDto>> GetDetail([FromQuery] GetClubDetailQuery query)
         {
-            return await _service.GetByIdAsync(id);
+            return await Mediator.Send(query);
         }
 
         [HttpPost]
-        public async Task<IActionResult> New([FromBody] Club club)
+        public async Task<int> New(NewClubCommand command)
         {
-            await _service.NewAsync(club);
-            return CreatedAtAction(nameof(Get), new { id = club.Id }, club);
+            return await Mediator.Send(command);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Club club)
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateClubCommand command)
         {
-            if (id != club.Id)
+            if (id != command.Id)
                 return BadRequest();
 
-            await _service.UpdateAsync(club);
+            await Mediator.Send(command);
+
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _service.DeleteAsync(id);
+            await Mediator.Send(new DeleteClubCommand { Id = id });
+
             return NoContent();
         }
     }
