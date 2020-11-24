@@ -10,6 +10,8 @@ namespace Api.Features.Leagues.Commands.UpdateLeague
 
         public int CountryId { get; set; }
 
+        public int Division { get; set; }
+
         public string LogoImageUrl { get; set; }
     }
 }

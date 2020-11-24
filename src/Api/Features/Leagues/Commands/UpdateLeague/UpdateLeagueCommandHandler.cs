@@ -22,6 +22,7 @@ namespace Api.Features.Leagues.Commands.UpdateLeague
 
             league.Name = request.Name;
             league.CountryId = request.CountryId;
+            league.Division = request.Division;
             league.LogoImageUrl = request.LogoImageUrl;
 
             await _context.CommitChangesAsync(cancellationToken);

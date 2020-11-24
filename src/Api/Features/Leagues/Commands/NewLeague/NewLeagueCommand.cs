@@ -8,6 +8,8 @@ namespace Api.Features.Leagues.Commands.NewLeague
 
         public int CountryId { get; set; }
 
+        public int Division { get; set; }
+
         public string LogoImageUrl { get; set; }
     }
 }

@@ -14,7 +14,11 @@ namespace Api.Features.Leagues.Commands.NewLeague
 
         public async Task<int> Handle(NewLeagueCommand request, CancellationToken cancellationToken)
         {
-            var league = new League(request.Name, request.CountryId, request.LogoImageUrl);
+            var league = new League(
+                request.Name,
+                request.CountryId,
+                request.Division,
+                request.LogoImageUrl);
 
             await _context.Leagues.AddAsync(league, cancellationToken);
 

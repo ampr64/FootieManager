@@ -9,6 +9,8 @@ namespace Core.Entities
 
         public int CountryId { get; set; }
 
+        public int Division { get; set; }
+
         public Country Country { get; set; }
 
         public string LogoImageUrl { get; set; }
@@ -17,10 +19,11 @@ namespace Core.Entities
 
         private League() { }
 
-        public League(string name, int countryId, string logoImageUrl = null)
+        public League(string name, int countryId, int division, string logoImageUrl = null)
         {
             Name = name;
             CountryId = countryId;
+            Division = division;
             LogoImageUrl = logoImageUrl;
         }
     }
