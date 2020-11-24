@@ -28,7 +28,7 @@ namespace Api
                         context.Database.Migrate();
                     }
 
-                    await FootieDataManagerContextSeed.SeedAsync(context);
+                    //await KFootieDataManagerContextSeed.SeedAsync(context);
                 }
                 catch (Exception ex)
                 {

@@ -1,11 +1,12 @@
-using Application.DependencyInjection;
+using Api.Configurations;
+using Api.Common.Core;
+using Core.Common;
 using Infrastructure.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -23,15 +24,15 @@ namespace Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSwaggerGen(config =>
-            {
-                config.SwaggerDoc("v1", new OpenApiInfo { Title = "FootieManager App", Version = "v1" });
-            });
-            services.AddSwaggerGenNewtonsoftSupport();
-
-            services.AddApplication();
-
             services.AddInfrastructure(Configuration);
+
+            services.ConfigureApplicationServices();
+
+            services.ConfigureMediatR();
+
+            services.ConfigureMappings();
+
+            services.ConfigureSwagger();
 
             services.AddControllers()
                     .AddNewtonsoftJson(opts =>
@@ -53,15 +54,8 @@ namespace Api
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                app.ConfigureSwagger();
             }
-
-            app.UseSwagger();
-
-            app.UseSwaggerUI(config =>
-            {
-                config.SwaggerEndpoint("/swagger/v1/swagger.json", "FootieManager App");
-                config.RoutePrefix = string.Empty;
-            });
 
             app.UseHttpsRedirection();
 
