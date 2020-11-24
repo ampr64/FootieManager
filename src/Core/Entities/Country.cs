@@ -12,17 +12,17 @@ namespace Core.Entities
 
         public Continent Continent { get; set; }
 
-        public string FlagUrl { get; set; }
+        public string FlagImageUrl { get; set; }
 
         public List<League> Leagues { get; set; } = new();
 
         public Country() { }
 
-        public Country(string name, int continentId, string flagUrl = null)
+        public Country(string name, int continentId, string flagImageUrl = null)
         {
             Name = name;
             ContinentId = continentId;
-            FlagUrl = flagUrl;
+            FlagImageUrl = flagImageUrl;
         }
     }
 }
