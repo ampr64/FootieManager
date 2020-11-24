@@ -8,7 +8,9 @@ namespace Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Stadium> builder)
         {
-            
+            builder.Property(s => s.Name)
+                .HasMaxLength(100)
+                .IsRequired();
         }
     }
 }

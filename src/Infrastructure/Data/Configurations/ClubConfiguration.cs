@@ -8,9 +8,16 @@ namespace Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Club> builder)
         {
-            builder.HasOne(c => c.Coach)
-                .WithOne(c => c.Club)
-                .HasForeignKey<Coach>(c => c.ClubId);
+            builder.Property(c => c.Name)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            builder.Property(c => c.Owner)
+                .HasMaxLength(50);
+
+            builder.HasOne(c => c.League)
+                .WithMany(l => l.Clubs)
+                .HasForeignKey(c => c.LeagueId);
 
             builder.HasOne(c => c.Stadium)
                 .WithMany(s => s.Clubs)

@@ -8,7 +8,13 @@ namespace Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<League> builder)
         {
-            
+            builder.Property(l => l.Name)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            builder.HasOne(l => l.Country)
+                .WithMany(c => c.Leagues)
+                .HasForeignKey(l => l.CountryId);
         }
     }
 }

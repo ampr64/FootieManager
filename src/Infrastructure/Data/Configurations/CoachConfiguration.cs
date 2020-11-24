@@ -8,7 +8,17 @@ namespace Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Coach> builder)
         {
-            
+            builder.Property(c => c.FirstName)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            builder.Property(c => c.LastName)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            builder.HasOne(c => c.Club)
+                .WithOne(c => c.Coach)
+                .HasForeignKey<Coach>(c => c.ClubId);
         }
     }
 }

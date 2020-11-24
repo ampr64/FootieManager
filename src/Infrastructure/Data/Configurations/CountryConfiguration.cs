@@ -8,7 +8,13 @@ namespace Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Country> builder)
         {
-            
+            builder.Property(c => c.Name)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            builder.HasOne(c => c.Continent)
+                .WithMany()
+                .HasForeignKey(c => c.ContinentId);
         }
     }
 }

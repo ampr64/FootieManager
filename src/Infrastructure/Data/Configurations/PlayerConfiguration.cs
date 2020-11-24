@@ -10,6 +10,14 @@ namespace Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Player> builder)
         {
+            builder.Property(p => p.FirstName)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            builder.Property(p => p.LastName)
+                .HasMaxLength(50)
+                .IsRequired();
+
             builder.Property(p => p.Foot)
                 .HasConversion(
                     v => v.ToString(),
@@ -19,6 +27,10 @@ namespace Infrastructure.Data.Configurations
                 .HasConversion(
                     v => v.ToString(),
                     v => (Position)Enum.Parse(typeof(Position), v));
+
+            builder.HasOne(p => p.Club)
+                .WithMany(c => c.Squad)
+                .HasForeignKey(p => p.ClubId);
         }
     }
 }
