@@ -20,7 +20,7 @@ namespace Api.Features.Players.Commands.NewPlayer
 
         public Foot Foot { get; set; }
 
-        public Position Position { get; set; }
+        public int PositionId { get; set; }
 
         public string PictureUrl { get; set; }
 

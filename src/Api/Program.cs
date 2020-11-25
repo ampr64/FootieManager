@@ -1,8 +1,11 @@
 using System;
+using System.IO;
 using System.Threading.Tasks;
+using Api.Extensions;
 using Infrastructure.Data;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -13,41 +16,49 @@ namespace Api
     {
         public static async Task Main(string[] args)
         {
-            var host = CreateHostBuilder(args).Build();
+            var configuration = GetConfiguration();
+            var host = BuildWebHost(configuration, args);
 
-            using (var scope = host.Services.CreateScope())
+            try
             {
-                var services = scope.ServiceProvider;
-
-                try
+                host.MigrateDbContext<FootieDataManagerContext>((context, services) =>
                 {
-                    var context = services.GetRequiredService<FootieDataManagerContext>();
+                    var env = services.GetService<IWebHostEnvironment>();
 
-                    if (context.Database.IsSqlServer())
-                    {
-                        context.Database.Migrate();
-                    }
+                    new FootieDataManagerContextSeed()
+                    .SeedAsync(context, env, configuration)
+                    .Wait();
+                });
 
-                    //await KFootieDataManagerContextSeed.SeedAsync(context);
-                }
-                catch (Exception ex)
-                {
-                    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-
-                    logger.LogError(ex, "An error occurred while migrating or seeding the database.");
-
-                    throw;
-                }
+                await host.RunAsync();
             }
+            catch (Exception ex)
+            {
+                using var scope = host.Services.CreateScope();
+                var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
-            await host.RunAsync();
+                logger.LogError(ex, "Program terminated unexpectedly.");
+            }
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        private static IWebHost BuildWebHost(IConfiguration configuration, string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .CaptureStartupErrors(true)
+                .ConfigureAppConfiguration(x => x.AddConfiguration(configuration))
+                .UseStartup<Startup>()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .Build();
+
+        private static IConfiguration GetConfiguration()
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables();
+
+            var config = builder.Build();
+
+            return builder.Build();
+        }
     }
 }

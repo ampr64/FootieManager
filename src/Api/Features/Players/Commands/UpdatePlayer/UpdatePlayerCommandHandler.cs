@@ -38,7 +38,7 @@ namespace Api.Features.Players.Commands.UpdatePlayer
             player.MarketValue = request.MarketValue;
             player.PictureUrl = request.PictureUrl;
             player.Foot = request.Foot;
-            player.Position = request.Position;
+            player.PositionId = request.Position;
             player.ClubId = request.ClubId;
             player.Salary = request.Salary;
         }

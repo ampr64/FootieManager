@@ -17,7 +17,7 @@ namespace Core.Entities
 
         public Coach Coach { get; set; }
 
-        public int StadiumId { get; set; }
+        public int? StadiumId { get; set; }
 
         public Stadium Stadium { get; set; }
 

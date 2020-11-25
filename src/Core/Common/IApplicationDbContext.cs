@@ -1,6 +1,7 @@
 ﻿using Core.Entities;
 using Core.Enumerations;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,6 +16,7 @@ namespace Core.Common
         DbSet<League> Leagues { get; set; }
         DbSet<Player> Players { get; set; }
         DbSet<Stadium> Stadiums { get; set; }
+        EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
         Task<int> CommitChangesAsync(CancellationToken cancellationToken = default);
     }
 }

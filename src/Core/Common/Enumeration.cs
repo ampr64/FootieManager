@@ -52,6 +52,10 @@ namespace Core.Common
 
         public int CompareTo(object obj) => Value.CompareTo(((Enumeration)obj).Value);
 
+        public static explicit operator int(Enumeration enumeration) => enumeration.Value;
+
+        public static explicit operator string(Enumeration enumeration) => enumeration.Name;
+
         private static T Parse<T, TProperty>(TProperty propertyValue, string propertyName, Func<T, bool> predicate) where T : Enumeration =>
             GetAll<T>().FirstOrDefault(predicate)
             ?? throw new InvalidOperationException($"'{propertyValue}' is not a valid {propertyName} in {typeof(T).Name}");

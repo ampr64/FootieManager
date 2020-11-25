@@ -22,7 +22,7 @@ namespace Api.Features.Players.Commands.UpdatePlayer
 
         public Foot Foot { get; set; }
 
-        public Position Position { get; set; }
+        public int Position { get; set; }
 
         public string PictureUrl { get; set; }
 
