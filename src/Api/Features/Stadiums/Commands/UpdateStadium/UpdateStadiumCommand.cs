@@ -1,11 +1,9 @@
-﻿using MediatR;
+﻿using Api.Common.Commands;
 
 namespace Api.Features.Stadiums.Commands.UpdateStadium
 {
-    public class UpdateStadiumCommand : IRequest
+    public class UpdateStadiumCommand : EntityCommand
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public int Capacity { get; set; }

@@ -1,9 +1,8 @@
-﻿using MediatR;
+﻿using Api.Common.Queries;
 
 namespace Api.Features.Clubs.Queries.GetClubDetail
 {
-    public class GetClubDetailQuery : IRequest<ClubDto>
+    public class GetClubDetailQuery : DetailQuery<ClubDto>
     {
-        public int Id { get; set; }
     }
 }

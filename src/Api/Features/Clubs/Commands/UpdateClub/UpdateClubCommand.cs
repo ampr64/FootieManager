@@ -1,11 +1,9 @@
-﻿using MediatR;
+﻿using Api.Common.Commands;
 
 namespace Api.Features.Clubs.Commands.UpdateClub
 {
-    public class UpdateClubCommand : IRequest
+    public class UpdateClubCommand : EntityCommand
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public int LeagueId { get; set; }

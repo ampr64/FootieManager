@@ -1,33 +1,14 @@
-﻿using Api.Exceptions;
+﻿using Api.Common.Commands;
 using Core.Common;
 using Core.Entities;
-using MediatR;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Api.Features.Leagues.Commands.UpdateLeague
 {
-    public class UpdateLeagueCommandHandler : IRequestHandler<UpdateLeagueCommand>
+    public class UpdateLeagueCommandHandler : UpdateEntityCommandHandler<UpdateLeagueCommand, League>
     {
-        private readonly IApplicationDbContext _context;
-
-        public UpdateLeagueCommandHandler(IApplicationDbContext context) => _context = context;
-
-        public async Task<Unit> Handle(UpdateLeagueCommand request, CancellationToken cancellationToken)
+        public UpdateLeagueCommandHandler(IApplicationDbContext context)
+            : base(context)
         {
-            var league = await _context.Leagues.FindAsync(request.Id, cancellationToken);
-
-            if (league is null)
-                throw new NotFoundException(nameof(League), request.Id);
-
-            league.Name = request.Name;
-            league.CountryId = request.CountryId;
-            league.Division = request.Division;
-            league.LogoImageUrl = request.LogoImageUrl;
-
-            await _context.CommitChangesAsync(cancellationToken);
-
-            return Unit.Value;
         }
     }
 }

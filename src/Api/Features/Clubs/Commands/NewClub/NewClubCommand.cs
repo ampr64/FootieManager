@@ -1,8 +1,8 @@
-﻿using MediatR;
+﻿using Api.Common.Commands;
 
 namespace Api.Features.Clubs.Commands.NewClub
 {
-    public class NewClubCommand : IRequest<int>
+    public class NewClubCommand : ICommand<int>
     {
         public string Name { get; set; }
 

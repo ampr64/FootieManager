@@ -1,20 +1,18 @@
-﻿using Core.Common;
+﻿using Api.Common.Commands;
+using Core.Common;
 using Core.Entities;
-using MediatR;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Api.Features.Players.Commands.NewPlayer
 {
-    public class NewPlayerCommandHandler : IRequestHandler<NewPlayerCommand, int>
+    public class NewPlayerCommandHandler : NewEntityCommandHandler<NewPlayerCommand, Player>
     {
-        private readonly IApplicationDbContext _context;
-
-        public NewPlayerCommandHandler(IApplicationDbContext context) => _context = context;
-
-        public async Task<int> Handle(NewPlayerCommand request, CancellationToken cancellationToken)
+        public NewPlayerCommandHandler(IApplicationDbContext context)
+            : base(context)
         {
-            var player = new Player(
+        }
+
+        protected override Player CreateInstanceFromCommand(NewPlayerCommand request) =>
+            new Player(
                 request.FirstName,
                 request.LastName,
                 request.CountryId,
@@ -28,12 +26,5 @@ namespace Api.Features.Players.Commands.NewPlayer
                 request.Foot,
                 request.ClubId,
                 request.Salary);
-
-            await _context.Players.AddAsync(player, cancellationToken);
-
-            await _context.CommitChangesAsync(cancellationToken);
-
-            return player.Id;
-        }
     }
 }

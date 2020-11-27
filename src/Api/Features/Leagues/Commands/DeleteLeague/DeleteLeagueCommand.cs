@@ -1,9 +1,8 @@
-﻿using MediatR;
+﻿using Api.Common.Commands;
 
 namespace Api.Features.Leagues.Commands.DeleteLeague
 {
-    public class DeleteLeagueCommand : IRequest
+    public class DeleteLeagueCommand : EntityCommand
     {
-        public int Id { get; set; }
     }
 }

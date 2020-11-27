@@ -1,12 +1,10 @@
-﻿using MediatR;
+﻿using Api.Common.Commands;
 using System;
 
 namespace Api.Features.Coaches.Commands.UpdateCoach
 {
-    public class UpdateCoachCommand : IRequest
+    public class UpdateCoachCommand : EntityCommand
     {
-        public int Id { get; set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }

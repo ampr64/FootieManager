@@ -1,9 +1,8 @@
-﻿using MediatR;
+﻿using Api.Common.Commands;
 
 namespace Api.Features.Stadiums.Commands.DeleteStadium
 {
-    public class DeleteStadiumCommand : IRequest
+    public class DeleteStadiumCommand : EntityCommand
     {
-        public int Id { get; set; }
     }
 }

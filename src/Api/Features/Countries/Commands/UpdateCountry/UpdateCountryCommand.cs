@@ -1,11 +1,9 @@
-﻿using MediatR;
+﻿using Api.Common.Commands;
 
 namespace Api.Features.Countries.Commands.UpdateCountry
 {
-    public class UpdateCountryCommand : IRequest
+    public class UpdateCountryCommand : EntityCommand
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public int ContinentId { get; set; }

@@ -1,20 +1,18 @@
-﻿using Core.Common;
+﻿using Api.Common.Commands;
+using Core.Common;
 using Core.Entities;
-using MediatR;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Api.Features.Clubs.Commands.NewClub
 {
-    public class NewClubCommandHandler : IRequestHandler<NewClubCommand, int>
+    public class NewClubCommandHandler : NewEntityCommandHandler<NewClubCommand, Club>
     {
-        private readonly IApplicationDbContext _context;
-
-        public NewClubCommandHandler(IApplicationDbContext context) => _context = context;
-
-        public async Task<int> Handle(NewClubCommand request, CancellationToken cancellationToken)
+        public NewClubCommandHandler(IApplicationDbContext context) :
+            base(context)
         {
-            var newClub = new Club(
+        }
+
+        protected override Club CreateInstanceFromCommand(NewClubCommand request) => 
+            new Club(
                 request.Name,
                 request.LeagueId,
                 request.President,
@@ -23,12 +21,5 @@ namespace Api.Features.Clubs.Commands.NewClub
                 request.StadiumId,
                 request.CoachId,
                 request.BadgeImageUrl);
-
-            await _context.Clubs.AddAsync(newClub, cancellationToken);
-
-            await _context.CommitChangesAsync(cancellationToken);
-
-            return newClub.Id;
-        }
     }
 }

@@ -1,8 +1,8 @@
-﻿using MediatR;
+﻿using Api.Common.Commands;
 
 namespace Api.Features.Countries.Commands.NewCountry
 {
-    public class NewCountryCommand : IRequest<int>
+    public class NewCountryCommand : ICommand<int>
     {
         public string Name { get; set; }
 

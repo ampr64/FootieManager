@@ -16,7 +16,9 @@ namespace Core.Common
         DbSet<League> Leagues { get; set; }
         DbSet<Player> Players { get; set; }
         DbSet<Stadium> Stadiums { get; set; }
-        EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
+
         Task<int> CommitChangesAsync(CancellationToken cancellationToken = default);
+        EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
+        DbSet<TEntity> Set<TEntity>() where TEntity : class;
     }
 }

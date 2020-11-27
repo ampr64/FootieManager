@@ -65,7 +65,7 @@ namespace Infrastructure.Persistence
             {
                 IQueryable<Continent> continents => Enumeration.GetAll<Continent>(),
                 IQueryable<Position> positions => Enumeration.GetAll<Position>(),
-                _ => Array.Empty<dynamic>()
+                _ => Array.Empty<object>()
             };
 
         private string GetFilePath(Type type)

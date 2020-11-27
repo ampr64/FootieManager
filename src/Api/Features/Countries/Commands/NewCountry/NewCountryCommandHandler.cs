@@ -1,26 +1,20 @@
-﻿using Core.Common;
+﻿using Api.Common.Commands;
+using Core.Common;
 using Core.Entities;
-using MediatR;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Api.Features.Countries.Commands.NewCountry
 {
-    public class NewCountryCommandHandler : IRequestHandler<NewCountryCommand, int>
+    public class NewCountryCommandHandler : NewEntityCommandHandler<NewCountryCommand, Country>
     {
-        private readonly IApplicationDbContext _context;
-
-        public NewCountryCommandHandler(IApplicationDbContext context) => _context = context;
-
-        public async Task<int> Handle(NewCountryCommand request, CancellationToken cancellationToken)
+        public NewCountryCommandHandler(IApplicationDbContext context)
+            : base(context)
         {
-            var country = new Country(request.Name, request.ContinentId, request.FlagImageUrl);
-
-            await _context.Countries.AddAsync(country, cancellationToken);
-
-            await _context.CommitChangesAsync(cancellationToken);
-
-            return country.Id;
         }
+
+        protected override Country CreateInstanceFromCommand(NewCountryCommand request) =>
+            new Country(
+                request.Name,
+                request.ContinentId,
+                request.FlagImageUrl);
     }
 }

@@ -1,10 +1,10 @@
-﻿using Core.Enums;
-using MediatR;
+﻿using Api.Common.Commands;
+using Core.Enums;
 using System;
 
 namespace Api.Features.Players.Commands.NewPlayer
 {
-    public class NewPlayerCommand : IRequest<int>
+    public class NewPlayerCommand : ICommand<int>
     {
         public string FirstName { get; set; }
 

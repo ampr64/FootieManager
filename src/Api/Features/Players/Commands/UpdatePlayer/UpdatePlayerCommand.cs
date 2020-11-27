@@ -1,13 +1,11 @@
-﻿using Core.Enums;
-using MediatR;
+﻿using Api.Common.Commands;
+using Core.Enums;
 using System;
 
 namespace Api.Features.Players.Commands.UpdatePlayer
 {
-    public class UpdatePlayerCommand : IRequest
+    public class UpdatePlayerCommand : EntityCommand
     {
-        public int Id { get; set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }

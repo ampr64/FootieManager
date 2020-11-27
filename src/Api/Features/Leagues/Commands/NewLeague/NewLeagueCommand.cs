@@ -1,8 +1,8 @@
-﻿using MediatR;
+﻿using Api.Common.Commands;
 
 namespace Api.Features.Leagues.Commands.NewLeague
 {
-    public class NewLeagueCommand : IRequest<int>
+    public class NewLeagueCommand : ICommand<int>
     {
         public string Name { get; set; }
 

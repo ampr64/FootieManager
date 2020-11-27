@@ -1,9 +1,8 @@
-﻿using MediatR;
+﻿using Api.Common.Commands;
 
 namespace Api.Features.Countries.Commands.DeleteCountry
 {
-    public class DeleteCountryCommand : IRequest
+    public class DeleteCountryCommand : EntityCommand
     {
-        public int Id { get; set; }
     }
 }

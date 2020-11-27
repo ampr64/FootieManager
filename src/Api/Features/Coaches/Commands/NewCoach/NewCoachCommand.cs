@@ -1,9 +1,9 @@
-﻿using MediatR;
+﻿using Api.Common.Commands;
 using System;
 
 namespace Api.Features.Coaches.Commands.NewCoach
 {
-    public class NewCoachCommand : IRequest<int>
+    public class NewCoachCommand : ICommand<int>
     {
         public string FirstName { get; set; }
 

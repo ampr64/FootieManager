@@ -5,6 +5,8 @@ namespace Api.Features.Clubs.Queries
 {
     public class ClubDto : IDto<Club>
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public string President { get; set; }

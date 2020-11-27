@@ -1,8 +1,8 @@
-﻿using MediatR;
+﻿using Api.Common.Commands;
 
 namespace Api.Features.Stadiums.Commands.NewStadium
 {
-    public class NewStadiumCommand : IRequest<int>
+    public class NewStadiumCommand : ICommand<int>
     {
         public string Name { get; set; }
 

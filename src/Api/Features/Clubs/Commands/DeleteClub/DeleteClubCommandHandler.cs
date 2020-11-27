@@ -1,30 +1,14 @@
-﻿using Api.Exceptions;
+﻿using Api.Common.Commands;
 using Core.Common;
 using Core.Entities;
-using MediatR;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Api.Features.Clubs.Commands.DeleteClub
 {
-    public class DeleteClubCommandHandler : IRequestHandler<DeleteClubCommand>
+    public class DeleteClubCommandHandler : DeleteEntityCommandHandler<DeleteClubCommand, Club>
     {
-        private readonly IApplicationDbContext _context;
-
-        public DeleteClubCommandHandler(IApplicationDbContext context) => _context = context;
-
-        public async Task<Unit> Handle(DeleteClubCommand request, CancellationToken cancellationToken)
+        public DeleteClubCommandHandler(IApplicationDbContext context)
+            : base(context)
         {
-            var club = await _context.Clubs.FindAsync(request.Id);
-
-            if (club is null)
-                throw new NotFoundException(nameof(Club), request.Id);
-
-            _context.Clubs.Remove(club);
-
-            await _context.CommitChangesAsync(cancellationToken);
-
-            return Unit.Value;
         }
     }
 }
