@@ -11,7 +11,7 @@ namespace Core.Entities
 
         public string FlagImageUrl { get; set; }
 
-        public List<League> Leagues { get; set; } = new();
+        public List<League> Leagues { get; } = new();
 
         public Country() { }
 

@@ -17,7 +17,7 @@ namespace Core.Entities
 
         public List<Club> Clubs { get; set; } = new();
 
-        private League() { }
+        public League() { }
 
         public League(string name, int countryId, int division, string logoImageUrl = null)
         {

@@ -9,17 +9,17 @@ namespace Core.Entities
 
         public int LeagueId { get; set; }
 
-        public League League { get; set; }
+        public League League { get; }
 
         public string President { get; set; }
 
         public int? CoachId { get; set; }
 
-        public Coach Coach { get; set; }
+        public Coach Coach { get; }
 
         public int? StadiumId { get; set; }
 
-        public Stadium Stadium { get; set; }
+        public Stadium Stadium { get; }
 
         public int YearFounded { get; set; }
 
@@ -27,7 +27,7 @@ namespace Core.Entities
 
         public string BadgeImageUrl { get; set; }
 
-        public List<Player> Squad { get; set; } = new();
+        public List<Player> Squad { get; } = new();
 
         public Club() { }
 

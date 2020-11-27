@@ -7,7 +7,7 @@ namespace Core.Entities
     {
         public string Name { get; set; }
 
-        public List<Club> Clubs { get; set; } = new();
+        public List<Club> Clubs { get; } = new();
 
         public int Capacity { get; set; }
 
