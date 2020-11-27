@@ -43,13 +43,12 @@ namespace Infrastructure.Data
                 var setMethod = context.GetType().GetMethod(nameof(context.Set)).MakeGenericMethod(type);
 
                 IQueryable<dynamic> dbSet = setMethod?.Invoke(context, null) as IQueryable<dynamic>;
-                IEnumerable<object> seedData = null;
 
                 if (!await dbSet?.AnyAsync())
                 {
                     var csv = GetFilePath(type);
 
-                    seedData = File.Exists(csv)
+                    var seedData = File.Exists(csv)
                         ? _csvSeeder.RetrieveData(type, csv)
                         : GetPredefinedValues(dbSet);
 
