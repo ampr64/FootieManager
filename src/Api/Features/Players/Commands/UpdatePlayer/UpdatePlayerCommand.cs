@@ -31,5 +31,7 @@ namespace Api.Features.Players.Commands.UpdatePlayer
         public decimal MarketValue { get; set; }
 
         public decimal? Salary { get; set; }
+
+        public int SquadNumber { get; set; }
     }
 }

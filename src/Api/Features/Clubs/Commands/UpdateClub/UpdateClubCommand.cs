@@ -10,7 +10,7 @@ namespace Api.Features.Clubs.Commands.UpdateClub
 
         public int LeagueId { get; set; }
 
-        public string Owner { get; set; }
+        public string President { get; set; }
 
         public int? CoachId { get; set; }
 

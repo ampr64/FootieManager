@@ -39,6 +39,7 @@ namespace Api.Features.Players.Commands.UpdatePlayer
             player.PictureUrl = request.PictureUrl;
             player.Foot = request.Foot;
             player.PositionId = request.Position;
+            player.SquadNumber = request.SquadNumber;
             player.ClubId = request.ClubId;
             player.Salary = request.Salary;
         }

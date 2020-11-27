@@ -1,5 +1,4 @@
 ﻿using Core.Common;
-using Core.Enumerations;
 using Core.Enums;
 using System;
 
@@ -21,6 +20,8 @@ namespace Core.Entities
 
         public decimal MarketValue { get; set; }
 
+        public int SquadNumber { get; set; }
+
         public Foot Foot { get; set; }
 
         public Player()
@@ -28,7 +29,7 @@ namespace Core.Entities
         }
         
         public Player(string firstName, string lastName, int countryId, DateTime birthDate, int height, int weight,
-            decimal marketValue, int positionId, string pictureUrl = null, Foot foot = Foot.Right, int? clubId = null,
+            decimal marketValue, int positionId, int squadNumber, string pictureUrl = null, Foot foot = Foot.Right, int? clubId = null,
             decimal? salary = null)
             : base(firstName, lastName, countryId, birthDate, pictureUrl)
         {
@@ -39,6 +40,7 @@ namespace Core.Entities
             PositionId = positionId;
             MarketValue = marketValue;
             Salary = salary;
+            SquadNumber = squadNumber;
         }
     }
 }

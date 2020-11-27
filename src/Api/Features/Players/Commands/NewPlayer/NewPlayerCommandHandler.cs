@@ -23,6 +23,7 @@ namespace Api.Features.Players.Commands.NewPlayer
                 request.Weight,
                 request.MarketValue,
                 request.PositionId,
+                request.SquadNumber,
                 request.PictureUrl,
                 request.Foot,
                 request.ClubId,

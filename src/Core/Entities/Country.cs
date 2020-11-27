@@ -1,5 +1,4 @@
 ﻿using Core.Common;
-using Core.Enumerations;
 using System.Collections.Generic;
 
 namespace Core.Entities
@@ -9,8 +8,6 @@ namespace Core.Entities
         public string Name { get; set; }
 
         public int ContinentId { get; set; }
-
-        public Continent Continent { get; set; }
 
         public string FlagImageUrl { get; set; }
 

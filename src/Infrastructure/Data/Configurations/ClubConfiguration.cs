@@ -12,7 +12,7 @@ namespace Infrastructure.Data.Configurations
                 .HasMaxLength(100)
                 .IsRequired();
 
-            builder.Property(c => c.Owner)
+            builder.Property(c => c.President)
                 .HasMaxLength(50);
 
             builder.HasOne(c => c.League)

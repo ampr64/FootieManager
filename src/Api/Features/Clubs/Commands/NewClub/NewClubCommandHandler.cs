@@ -17,7 +17,7 @@ namespace Api.Features.Clubs.Commands.NewClub
             var newClub = new Club(
                 request.Name,
                 request.LeagueId,
-                request.Owner,
+                request.President,
                 request.YearFounded,
                 request.TrophyCount,
                 request.StadiumId,

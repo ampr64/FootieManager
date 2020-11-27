@@ -1,14 +1,15 @@
 ﻿using Core.Entities;
+using CsvHelper.Configuration;
 
 namespace Infrastructure.Files.Maps
 {
-    internal sealed class CountryMap : AbstractMap<Country>
+    internal sealed class CountryMap : ClassMap<Country>
     {
         internal CountryMap()
         {
-            MapWithNameConvention(m => m.Name);
-            MapWithNameConvention(m => m.ContinentId);
-            MapWithNameConvention(m => m.FlagImageUrl);
+            Map(m => m.Name).Name(nameof(Country.Name));
+            Map(m => m.ContinentId).Name(nameof(Country.ContinentId));
+            Map(m => m.FlagImageUrl).Name(nameof(Country.FlagImageUrl));
         }
     }
 }

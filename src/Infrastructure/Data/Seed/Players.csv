@@ -1,0 +1,16 @@
+﻿FirstName,LastName,CountryId,BirthDate,Height,Weight,ClubId,PositionId,Foot,SquadNumber,MarketValue,Salary,PictureUrl
+Franco,Armani,2,10/16/1986,189,85,1,1,1,1,6000000,240000,https://tmssl.akamaized.net/images/portrait/header/119634-1591345987.jpg?lm=1591345981
+Javier,Pinola,2,2/24/1983,180,77,1,2,2,22,800000,130000,https://tmssl.akamaized.net/images/portrait/header/7358-1405581135.jpg?lm=1433144917
+Milton,Casco,2,4/11/1988,169,69,1,2,1,20,2400000,145000,https://tmssl.akamaized.net/images/portrait/header/115183-1471523614.png?lm=1471523636
+Gonzalo,Montiel,2,1/1/1997,176,73,1,2,1,29,8000000,115000,https://tmssl.akamaized.net/images/portrait/header/402733-1540376006.jpg?lm=1540376022
+Ignacio,Fernández,2,1/12/1990,182,70,1,3,2,10,6500000,170000,https://tmssl.akamaized.net/images/portrait/header/50669-1471523894.png?lm=1471523937
+Matías,Suárez,2,5/9/1988,183,74,1,4,1,7,2800000,170000,https://tmssl.akamaized.net/images/portrait/header/s_66660_58_2012_2.jpg?lm=1374047259
+Alisson,Becker,3,10/2/1992,191,91,6,1,1,1,80000000,6700000,https://tmssl.akamaized.net/images/portrait/header/105470-1595945929.jpg?lm=1595945994
+Virgil,van Dijk,9,7/8/1991,193,90,6,2,1,4,80000000,8150000,https://tmssl.akamaized.net/images/portrait/header/139208-1519830937.jpg?lm=1519830949
+Thiago,Alcántara,10,4/11/1991,174,72,15,3,1,6,48000000,7225000,https://tmssl.akamaized.net/images/portrait/header/60444-1540568423.jpg?lm=1540568436
+Marc-André,ter Stegen,6,4/30/1992,187,87,4,1,1,1,75000000,8900000,https://tmssl.akamaized.net/images/portrait/header/74857-1599987750.jpg?lm=1599987777
+Jordi,Alba,10,3/21/1989,170,69,4,2,2,18,30000000,8750000,https://tmssl.akamaized.net/images/portrait/header/69751-1454079452.jpg?lm=1454079477
+Gerard,Piqué,10,2/2/1987,192,90,4,2,1,3,15000000,9000000,https://tmssl.akamaized.net/images/portrait/header/18944-1454670060.jpg?lm=1454670159
+Frenkie,de Jong,9,5/12/1997,181,78,4,3,1,21,70000000,6800000,https://tmssl.akamaized.net/images/portrait/header/326330-1599987876.jpg?lm=1599987896
+Antoine,Griezmann,4,3/21/1991,176,73,4,4,2,7,80000000,12500000,https://tmssl.akamaized.net/images/portrait/header/125781-1564143733.jpg?lm=1564143749
+Lionel,Messi,2,6/24/1987,170,69,4,4,2,10,100000000,30000000,https://tmssl.akamaized.net/images/portrait/header/28003-1604164452.png?lm=1604164470

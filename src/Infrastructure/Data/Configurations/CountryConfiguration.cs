@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Enumerations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -12,7 +13,7 @@ namespace Infrastructure.Data.Configurations
                 .HasMaxLength(50)
                 .IsRequired();
 
-            builder.HasOne(c => c.Continent)
+            builder.HasOne<Continent>()
                 .WithMany()
                 .HasForeignKey(c => c.ContinentId);
         }

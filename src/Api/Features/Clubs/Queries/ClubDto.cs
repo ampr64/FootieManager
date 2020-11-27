@@ -7,7 +7,7 @@ namespace Api.Features.Clubs.Queries
     {
         public string Name { get; set; }
 
-        public string Owner { get; set; }
+        public string President { get; set; }
 
         public int? CoachId { get; set; }
 
@@ -19,6 +19,6 @@ namespace Api.Features.Clubs.Queries
 
         public int TrophyCount { get; set; }
 
-        public string BadgeUrl { get; set; }
+        public string BadgeImageUrl { get; set; }
     }
 }

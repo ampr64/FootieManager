@@ -25,8 +25,8 @@ namespace Api
                 {
                     var env = services.GetService<IWebHostEnvironment>();
 
-                    new FootieDataManagerContextSeed()
-                    .SeedAsync(context, env, configuration)
+                    new FootieDataManagerContextSeed(env, configuration)
+                    .SeedAsync(context)
                     .Wait();
                 });
 

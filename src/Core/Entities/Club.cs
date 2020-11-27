@@ -11,7 +11,7 @@ namespace Core.Entities
 
         public League League { get; set; }
 
-        public string Owner { get; set; }
+        public string President { get; set; }
 
         public int? CoachId { get; set; }
 
@@ -34,7 +34,7 @@ namespace Core.Entities
         public Club(
             string name,
             int leagueId,
-            string owner,
+            string president,
             int yearFounded,
             int trophyCount,
             int stadiumId,
@@ -43,7 +43,7 @@ namespace Core.Entities
         {
             Name = name;
             LeagueId = leagueId;
-            Owner = owner;
+            President = president;
             CoachId = coachId;
             YearFounded = yearFounded;
             TrophyCount = trophyCount;

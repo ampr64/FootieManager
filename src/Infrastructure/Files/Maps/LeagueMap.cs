@@ -1,15 +1,14 @@
 ﻿using Core.Entities;
+using CsvHelper.Configuration;
 
 namespace Infrastructure.Files.Maps
 {
-    internal sealed class LeagueMap : AbstractMap<League>
+    internal sealed class LeagueMap : ClassMap<League>
     {
-        internal LeagueMap()
+        internal LeagueMap(CsvConfiguration configuration)
         {
-            MapWithNameConvention(m => m.Name);
-            MapWithNameConvention(m => m.CountryId);
-            MapWithNameConvention(m => m.Division);
-            MapWithNameConvention(m => m.LogoImageUrl);
+            AutoMap(configuration);
+            Map(m => m.LogoImageUrl).Name(nameof(League.LogoImageUrl));
         }
     }
 }

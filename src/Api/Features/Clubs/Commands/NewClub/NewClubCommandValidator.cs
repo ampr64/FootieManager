@@ -10,7 +10,7 @@ namespace Api.Features.Clubs.Commands.NewClub
                 .NotEmpty()
                 .MaximumLength(100);
 
-            RuleFor(c => c.Owner)
+            RuleFor(c => c.President)
                 .MaximumLength(50);
 
             RuleFor(c => c.TrophyCount)
