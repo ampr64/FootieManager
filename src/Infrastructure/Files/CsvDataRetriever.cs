@@ -24,16 +24,7 @@ namespace Infrastructure.Files
             using var reader = new StreamReader(path);
             using var csv = new CsvReader(reader, _configuration);
 
-            //var typeClassMap = FindClassMap(type);
-
-            ////if (typeClassMap is not null)
-            ////    csv.Configuration.RegisterClassMap(typeClassMap);
-
             return csv.GetRecords(type).ToList();
         }
-
-        private Type FindClassMap(Type type) =>
-            Assembly.GetExecutingAssembly().DefinedTypes
-                .FirstOrDefault(t => t.BaseType == typeof(ClassMap<>).MakeGenericType(type));
     }
 }
