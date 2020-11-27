@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.Data.Configurations
+namespace Infrastructure.Persistence.Configurations
 {
     public class ContinentConfiguration : IEntityTypeConfiguration<Continent>
     {
@@ -14,7 +14,6 @@ namespace Infrastructure.Data.Configurations
                 .HasColumnName("Id");
 
             builder.Property(c => c.Value)
-                .HasDefaultValue(1)
                 .ValueGeneratedNever();
         }
     }

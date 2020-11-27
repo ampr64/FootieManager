@@ -9,8 +9,8 @@ namespace Core.Enumerations
         public static Position Midfielder = new Position(3, nameof(Midfielder));
         public static Position Forward = new Position(4, nameof(Forward));
 
-        private Position(int id, string name)
-            : base(id, name)
+        private Position(int value, string name)
+            : base(value, name)
         {
         }
     }

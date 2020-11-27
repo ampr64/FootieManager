@@ -1,6 +1,4 @@
 using Api.Configurations;
-using Api.Common.Core;
-using Core.Common;
 using Infrastructure.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

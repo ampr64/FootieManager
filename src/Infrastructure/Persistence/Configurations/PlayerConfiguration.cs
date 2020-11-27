@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 
-namespace Infrastructure.Data.Configurations
+namespace Infrastructure.Persistence.Configurations
 {
     public class PlayerConfiguration : IEntityTypeConfiguration<Player>
     {

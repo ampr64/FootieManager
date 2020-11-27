@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Api.Extensions;
 using Core.Common;
-using Infrastructure.Data;
+using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Data
+namespace Infrastructure.Persistence
 {
     public class FootieDataManagerContext : DbContext, IApplicationDbContext
     {
