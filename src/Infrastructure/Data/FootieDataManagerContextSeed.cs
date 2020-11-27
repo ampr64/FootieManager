@@ -1,10 +1,10 @@
 ﻿using Core.Common;
 using Core.Entities;
+using Core.Enumerations;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,23 +41,32 @@ namespace Infrastructure.Data
             {
                 var type = entityType.ClrType;
                 var setMethod = context.GetType().GetMethod(nameof(context.Set)).MakeGenericMethod(type);
-                var dbSet = setMethod?.Invoke(context, null) as IQueryable<dynamic>;
+
+                IQueryable<dynamic> dbSet = setMethod?.Invoke(context, null) as IQueryable<dynamic>;
+                IEnumerable<object> seedData = null;
 
                 if (!await dbSet?.AnyAsync())
                 {
                     var csv = GetFilePath(type);
 
-                    if (File.Exists(csv))
-                    {
-                        var seedData = _csvSeeder.RetrieveData(type, csv);
-                        if (seedData.Any())
-                            await context.AddRangeAsync(seedData);
-                    }
+                    seedData = File.Exists(csv)
+                        ? _csvSeeder.RetrieveData(type, csv)
+                        : GetPredefinedValues(dbSet);
+
+                    if (seedData != null && seedData.Any())
+                        await context.AddRangeAsync(seedData);
                 }
             }
 
             await context.SaveChangesAsync();
         }
+
+        private IEnumerable<object> GetPredefinedValues(IQueryable<object> dbSet) =>
+            dbSet switch
+            {
+                IQueryable<Continent> continents => Enumeration.GetAll<Continent>(),
+                _ => Array.Empty<dynamic>()
+            };
 
         private string GetFilePath(Type type)
         {
