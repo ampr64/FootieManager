@@ -1,9 +1,10 @@
-﻿using Core.Entities;
-using Infrastructure.Files;
+﻿using Core.Common;
+using Core.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,6 +15,7 @@ namespace Infrastructure.Data
 {
     public class FootieDataManagerContextSeed
     {
+        private readonly ICsvDataRetriever _csvSeeder;
         private readonly string _seedFilesPath;
 
         private static readonly Dictionary<Type, string> _fileNameByType = new Dictionary<Type, string>
@@ -26,10 +28,11 @@ namespace Infrastructure.Data
             {typeof(Stadium), "Stadiums.csv"}
         };
 
-        public FootieDataManagerContextSeed(IWebHostEnvironment env, IConfiguration configuration)
+        public FootieDataManagerContextSeed(IWebHostEnvironment env, IConfiguration configuration, ICsvDataRetriever csvSeeder)
         {
             var relativeCsvFilesPath = configuration.GetValue<string>("CsvSeedFilesRelativePath");
             _seedFilesPath = Path.GetFullPath(relativeCsvFilesPath, env.ContentRootPath);
+            _csvSeeder = csvSeeder;
         }
 
         public async Task SeedAsync(FootieDataManagerContext context)
@@ -46,7 +49,7 @@ namespace Infrastructure.Data
 
                     if (File.Exists(csv))
                     {
-                        var seedData = new CsvService().GetData(type, csv);
+                        var seedData = _csvSeeder.RetrieveData(type, csv);
                         if (seedData.Any())
                             await context.AddRangeAsync(seedData);
                     }

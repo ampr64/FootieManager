@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Core.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 
 namespace Api.Extensions
 {
-    public static class IWebHostExtensions
+    public static class IHostExtensions
     {
-        public static IWebHost MigrateDbContext<TContext>(this IWebHost host, Action<TContext, IServiceProvider> seedAction)
+        public static IHost MigrateDbContext<TContext>(this IHost host, Action<TContext, IServiceProvider> seedAction)
             where TContext : DbContext
         {
             using var scope = host.Services.CreateScope();

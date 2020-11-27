@@ -1,5 +1,6 @@
 ﻿using Core.Common;
 using Infrastructure.Data;
+using Infrastructure.Files;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,8 +23,9 @@ namespace Infrastructure.DependencyInjection
                         configuration.GetConnectionString("FootieDataManagerDb"),
                         b => b.MigrationsAssembly(typeof(FootieDataManagerContext).Assembly.FullName)));
             }
-
+                        
             container.AddScoped<IApplicationDbContext, FootieDataManagerContext>();
+            container.AddTransient<ICsvDataRetriever, CsvDataRetriever>();
 
             return container;
         }

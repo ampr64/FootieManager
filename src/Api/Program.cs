@@ -2,8 +2,8 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using Api.Extensions;
+using Core.Common;
 using Infrastructure.Data;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,16 +16,17 @@ namespace Api
     {
         public static async Task Main(string[] args)
         {
-            var configuration = GetConfiguration();
-            var host = BuildWebHost(configuration, args);
+            var host = BuildHost(args);
 
             try
             {
                 host.MigrateDbContext<FootieDataManagerContext>((context, services) =>
                 {
                     var env = services.GetService<IWebHostEnvironment>();
+                    var configuration = services.GetService<IConfiguration>();
+                    var csvSeeder = services.GetRequiredService<ICsvDataRetriever>(); 
 
-                    new FootieDataManagerContextSeed(env, configuration)
+                    new FootieDataManagerContextSeed(env, configuration, csvSeeder)
                     .SeedAsync(context)
                     .Wait();
                 });
@@ -41,24 +42,13 @@ namespace Api
             }
         }
 
-        private static IWebHost BuildWebHost(IConfiguration configuration, string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .CaptureStartupErrors(true)
-                .ConfigureAppConfiguration(x => x.AddConfiguration(configuration))
-                .UseStartup<Startup>()
-                .UseContentRoot(Directory.GetCurrentDirectory())
+        public static IHost BuildHost(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
+                })
                 .Build();
-
-        private static IConfiguration GetConfiguration()
-        {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddEnvironmentVariables();
-
-            var config = builder.Build();
-
-            return builder.Build();
-        }
     }
 }
