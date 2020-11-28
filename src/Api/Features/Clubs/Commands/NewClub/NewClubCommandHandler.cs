@@ -4,7 +4,7 @@ using Core.Entities;
 
 namespace Api.Features.Clubs.Commands.NewClub
 {
-    public class NewClubCommandHandler : NewEntityCommandHandler<NewClubCommand, Club>
+    public class NewClubCommandHandler : NewCommandHandlerBase<NewClubCommand, Club>
     {
         public NewClubCommandHandler(IApplicationDbContext context) :
             base(context)

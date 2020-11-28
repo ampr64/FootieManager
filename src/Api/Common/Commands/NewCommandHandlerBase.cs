@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace Api.Common.Commands
 {
-    public abstract class NewEntityCommandHandler<TCommand, TEntity> : ICommandHandler<TCommand, int>
+    public abstract class NewCommandHandlerBase<TCommand, TEntity> : ICommandHandler<TCommand, int>
         where TCommand : ICommand<int>
         where TEntity : Entity
     {        
         protected readonly IApplicationDbContext _context;
 
-        public NewEntityCommandHandler(IApplicationDbContext context) => _context = context ?? throw new ArgumentNullException(nameof(context));
+        public NewCommandHandlerBase(IApplicationDbContext context) => _context = context ?? throw new ArgumentNullException(nameof(context));
 
         public async Task<int> Handle(TCommand request, CancellationToken cancellationToken)
         {

@@ -4,7 +4,7 @@ using Core.Entities;
 
 namespace Api.Features.Leagues.Commands.UpdateLeague
 {
-    public class UpdateLeagueCommandHandler : UpdateEntityCommandHandler<UpdateLeagueCommand, League>
+    public class UpdateLeagueCommandHandler : UpdateCommandHandlerBase<UpdateLeagueCommand, League>
     {
         public UpdateLeagueCommandHandler(IApplicationDbContext context)
             : base(context)

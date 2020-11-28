@@ -4,7 +4,7 @@ using Core.Entities;
 
 namespace Api.Features.Coaches.Commands.UpdateCoach
 {
-    public class UpdateCoachCommandHandler : UpdateEntityCommandHandler<UpdateCoachCommand, Coach>
+    public class UpdateCoachCommandHandler : UpdateCommandHandlerBase<UpdateCoachCommand, Coach>
     {
         public UpdateCoachCommandHandler(IApplicationDbContext context)
             : base(context)

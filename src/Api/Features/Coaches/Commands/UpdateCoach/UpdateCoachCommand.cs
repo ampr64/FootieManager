@@ -3,7 +3,7 @@ using System;
 
 namespace Api.Features.Coaches.Commands.UpdateCoach
 {
-    public class UpdateCoachCommand : EntityCommand
+    public class UpdateCoachCommand : UpdateCommand
     {
         public string FirstName { get; set; }
 

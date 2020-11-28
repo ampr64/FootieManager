@@ -4,7 +4,7 @@ using System;
 
 namespace Api.Features.Players.Commands.UpdatePlayer
 {
-    public class UpdatePlayerCommand : EntityCommand
+    public class UpdatePlayerCommand : UpdateCommand
     {
         public string FirstName { get; set; }
 

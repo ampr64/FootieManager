@@ -2,7 +2,7 @@
 
 namespace Api.Features.Stadiums.Commands.UpdateStadium
 {
-    public class UpdateStadiumCommand : EntityCommand
+    public class UpdateStadiumCommand : UpdateCommand
     {
         public string Name { get; set; }
 

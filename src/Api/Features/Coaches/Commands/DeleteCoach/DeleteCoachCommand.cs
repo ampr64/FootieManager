@@ -2,7 +2,11 @@
 
 namespace Api.Features.Clubs.Commands.DeleteCoach
 {
-    public class DeleteCoachCommand : EntityCommand
+    public class DeleteCoachCommand : DeleteCommand
     {
+        public DeleteCoachCommand(int id)
+            : base(id)
+        {
+        }
     }
 }

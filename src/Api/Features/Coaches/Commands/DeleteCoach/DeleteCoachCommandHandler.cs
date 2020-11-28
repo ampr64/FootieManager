@@ -4,7 +4,7 @@ using Core.Entities;
 
 namespace Api.Features.Clubs.Commands.DeleteCoach
 {
-    public class DeleteCoachCommandHandler : DeleteEntityCommandHandler<DeleteCoachCommand, Coach>
+    public class DeleteCoachCommandHandler : DeleteCommandHandlerBase<DeleteCoachCommand, Coach>
     {
         public DeleteCoachCommandHandler(IApplicationDbContext context)
             : base(context)

@@ -2,8 +2,11 @@
 
 namespace Api.Features.Clubs.Commands.DeleteClub
 {
-    public class DeleteClubCommand : EntityCommand
+    public class DeleteClubCommand : DeleteCommand
     {
-        public DeleteClubCommand(int id) => Id = id;
+        public DeleteClubCommand(int id)
+            : base(id)
+        {
+        }
     }
 }

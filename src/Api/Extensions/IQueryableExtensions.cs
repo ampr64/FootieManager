@@ -34,11 +34,8 @@ namespace Api.Extensions
         private static IOrderedQueryable<T> ApplyOrder<T, TKey>(IQueryable<T> query, (Expression<Func<T, TKey>> KeySelector, SortDirection Direction) sortCriteria)
             where T : class
         {
-            IOrderedQueryable<T> result;
-
-            if (typeof(IOrderedQueryable).IsAssignableFrom(query.Expression.Type))
+            if (query is IOrderedQueryable<T> result)
             {
-                result = query as IOrderedQueryable<T>;
                 result = sortCriteria.Direction == SortDirection.Ascending
                     ? result.ThenBy(sortCriteria.KeySelector)
                     : result.ThenByDescending(sortCriteria.KeySelector);

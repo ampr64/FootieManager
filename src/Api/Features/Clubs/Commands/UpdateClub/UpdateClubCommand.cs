@@ -2,7 +2,7 @@
 
 namespace Api.Features.Clubs.Commands.UpdateClub
 {
-    public class UpdateClubCommand : EntityCommand
+    public class UpdateClubCommand : UpdateCommand
     {
         public string Name { get; set; }
 

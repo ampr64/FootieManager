@@ -4,7 +4,7 @@ using Core.Entities;
 
 namespace Api.Features.Stadiums.Commands.DeleteStadium
 {
-    public class DeleteStadiumCommandHandler : DeleteEntityCommandHandler<DeleteStadiumCommand, Stadium>
+    public class DeleteStadiumCommandHandler : DeleteCommandHandlerBase<DeleteStadiumCommand, Stadium>
     {
         public DeleteStadiumCommandHandler(IApplicationDbContext context)
             : base(context)

@@ -4,7 +4,7 @@ using Core.Entities;
 
 namespace Api.Features.Coaches.Commands.NewCoach
 {
-    public class NewCoachCommandHandler : NewEntityCommandHandler<NewCoachCommand, Coach>
+    public class NewCoachCommandHandler : NewCommandHandlerBase<NewCoachCommand, Coach>
     {
 
         public NewCoachCommandHandler(IApplicationDbContext context)

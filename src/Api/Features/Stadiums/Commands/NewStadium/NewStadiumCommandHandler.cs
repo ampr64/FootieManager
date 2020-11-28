@@ -4,7 +4,7 @@ using Core.Entities;
 
 namespace Api.Features.Stadiums.Commands.NewStadium
 {
-    public class NewStadiumCommandHandler : NewEntityCommandHandler<NewStadiumCommand, Stadium>
+    public class NewStadiumCommandHandler : NewCommandHandlerBase<NewStadiumCommand, Stadium>
     {
         public NewStadiumCommandHandler(IApplicationDbContext context)
             : base(context)

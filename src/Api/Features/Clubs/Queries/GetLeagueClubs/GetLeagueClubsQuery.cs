@@ -6,5 +6,7 @@ namespace Api.Features.Clubs.Queries.GetLeagueClubs
     public class GetLeagueClubsQuery : IQuery<IEnumerable<ClubDto>>
     {
         public int LeagueId { get; set; }
+
+        public GetLeagueClubsQuery(int leagueId) => LeagueId = leagueId;
     }
 }

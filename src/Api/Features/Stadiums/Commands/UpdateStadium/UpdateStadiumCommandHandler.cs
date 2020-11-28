@@ -4,7 +4,7 @@ using Core.Entities;
 
 namespace Api.Features.Stadiums.Commands.UpdateStadium
 {
-    public class UpdateStadiumCommandHandler : UpdateEntityCommandHandler<UpdateStadiumCommand, Player>
+    public class UpdateStadiumCommandHandler : UpdateCommandHandlerBase<UpdateStadiumCommand, Player>
     {
         public UpdateStadiumCommandHandler(IApplicationDbContext context)
             : base(context)

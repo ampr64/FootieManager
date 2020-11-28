@@ -2,7 +2,11 @@
 
 namespace Api.Features.Countries.Commands.DeleteCountry
 {
-    public class DeleteCountryCommand : EntityCommand
+    public class DeleteCountryCommand : DeleteCommand
     {
+        public DeleteCountryCommand(int id)
+            : base(id)
+        {
+        }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Api.Features.Leagues.Commands.UpdateLeague
 {
-    public class UpdateLeagueCommand : EntityCommand
+    public class UpdateLeagueCommand : UpdateCommand
     {
         public string Name { get; set; }
 

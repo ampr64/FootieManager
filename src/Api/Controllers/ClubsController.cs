@@ -30,7 +30,7 @@ namespace Api.Controllers
         [HttpGet("leagues/{leagueId}")]
         public async Task<ActionResult<IEnumerable<ClubDto>>> GetLeagueClubs(int leagueId)
         {
-            var leagues = await Mediator.Send(new GetLeagueClubsQuery { LeagueId = leagueId });
+            var leagues = await Mediator.Send(new GetLeagueClubsQuery(leagueId));
 
             return Ok(leagues);
         }

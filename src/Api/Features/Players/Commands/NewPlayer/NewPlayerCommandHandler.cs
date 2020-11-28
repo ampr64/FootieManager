@@ -4,7 +4,7 @@ using Core.Entities;
 
 namespace Api.Features.Players.Commands.NewPlayer
 {
-    public class NewPlayerCommandHandler : NewEntityCommandHandler<NewPlayerCommand, Player>
+    public class NewPlayerCommandHandler : NewCommandHandlerBase<NewPlayerCommand, Player>
     {
         public NewPlayerCommandHandler(IApplicationDbContext context)
             : base(context)

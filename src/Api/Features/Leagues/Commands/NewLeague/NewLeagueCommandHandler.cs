@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Api.Features.Leagues.Commands.NewLeague
 {
-    public class NewLeagueCommandHandler : NewEntityCommandHandler<NewLeagueCommand, League>
+    public class NewLeagueCommandHandler : NewCommandHandlerBase<NewLeagueCommand, League>
     {
         public NewLeagueCommandHandler(IApplicationDbContext context)
             : base(context)

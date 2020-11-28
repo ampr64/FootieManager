@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Api.Common.Commands
 {
-    public abstract class DeleteEntityCommandHandler<TCommand, TEntity> : ICommandHandler<TCommand>
-        where TCommand : EntityCommand
+    public abstract class DeleteCommandHandlerBase<TCommand, TEntity> : ICommandHandler<TCommand>
+        where TCommand : DeleteCommand
         where TEntity : Entity
     {
         protected readonly IApplicationDbContext _context;
 
-        protected DeleteEntityCommandHandler(IApplicationDbContext context) => _context = context;
+        protected DeleteCommandHandlerBase(IApplicationDbContext context) => _context = context;
 
         public async Task<Unit> Handle(TCommand request, CancellationToken cancellationToken)
         {

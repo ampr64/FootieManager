@@ -4,7 +4,7 @@ using Core.Entities;
 
 namespace Api.Features.Countries.Commands.UpdateCountry
 {
-    public class UpdateCountryCommandHandler : UpdateEntityCommandHandler<UpdateCountryCommand, Country>
+    public class UpdateCountryCommandHandler : UpdateCommandHandlerBase<UpdateCountryCommand, Country>
     {
         public UpdateCountryCommandHandler(IApplicationDbContext context)
             : base(context)

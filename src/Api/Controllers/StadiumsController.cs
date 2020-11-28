@@ -48,7 +48,7 @@ namespace Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await Mediator.Send(new DeleteStadiumCommand { Id = id });
+            await Mediator.Send(new DeleteStadiumCommand(id));
 
             return NoContent();
         }

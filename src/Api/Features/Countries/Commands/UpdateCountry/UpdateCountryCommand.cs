@@ -2,7 +2,7 @@
 
 namespace Api.Features.Countries.Commands.UpdateCountry
 {
-    public class UpdateCountryCommand : EntityCommand
+    public class UpdateCountryCommand : UpdateCommand
     {
         public string Name { get; set; }
 
