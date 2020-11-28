@@ -18,7 +18,7 @@ namespace Api.Features.Clubs.Queries.GetClubs
 
         public override async Task<IEnumerable<ClubDto>> Handle(GetClubsQuery request, CancellationToken cancellationToken)
         {
-            return await HandleWithSorting(request, cancellationToken, (c => c.Name, SortDirection.Ascending));
+            return await Handle(null, cancellationToken, (c => c.LeagueId, SortDirection.Ascending), (c => c.Name, SortDirection.Ascending));
         }
     }
 }

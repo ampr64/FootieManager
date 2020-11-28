@@ -27,7 +27,7 @@ namespace Api.Controllers
             return await Mediator.Send(new GetClubDetailQuery(id));
         }
 
-        [HttpGet("{leagueId}")]
+        [HttpGet("leagues/{leagueId}")]
         public async Task<ActionResult<IEnumerable<ClubDto>>> GetLeagueClubs(int leagueId)
         {
             var leagues = await Mediator.Send(new GetLeagueClubsQuery { LeagueId = leagueId });

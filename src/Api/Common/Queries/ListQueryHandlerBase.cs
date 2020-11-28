@@ -31,12 +31,14 @@ namespace Api.Common.Queries
                 .ProjectToListAsync<TDto>(_mapper.ConfigurationProvider, cancellationToken);
         }
 
-        protected async Task<IEnumerable<TDto>> HandleWithSorting<TKey>(TQuery request, CancellationToken cancellationToken, params (Expression<Func<TEntity, TKey>> KeySelector, SortDirection Direction)[] sortCriterias)
+        protected async Task<IEnumerable<TDto>> Handle(IQueryable<TEntity> query = null, CancellationToken cancellationToken = default, params (Expression<Func<TEntity, object>> KeySelector, SortDirection Direction)[] sortCriterias)
         {
-            if (sortCriterias is null || !sortCriterias.Any())
-                throw new ArgumentException("{parameterName} are required.", nameof(sortCriterias));
+            query ??= _context.Set<TEntity>();
 
-            return await _context.Set<TEntity>()
+            if (sortCriterias is null || !sortCriterias.Any())
+                sortCriterias = new (Expression<Func<TEntity, object>>, SortDirection)[] { (c => c.Id, SortDirection.Ascending) };
+
+            return await query
                 .OrderByCriterias(sortCriterias)
                 .ProjectToListAsync<TDto>(_mapper.ConfigurationProvider, cancellationToken);
         }
