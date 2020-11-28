@@ -1,10 +1,11 @@
 ﻿using Api.Common.Mappings;
 using Core.Entities;
+using Core.Enums;
 using System;
 
-namespace Api.Features.Coaches.Queries
+namespace Api.Features.Players.Queries
 {
-    public class CoachDto : IDto<Coach>
+    public class PlayerDto : IDto<Player>
     {
         public string FirstName { get; set; }
 
@@ -18,6 +19,18 @@ namespace Api.Features.Coaches.Queries
 
         public int? ClubId { get; set; }
 
+        public int PositionId { get; set; }
+
+        public int Height { get; set; }
+
+        public int Weight { get; set; }
+
         public decimal? Salary { get; set; }
+
+        public decimal MarketValue { get; set; }
+
+        public int SquadNumber { get; set; }
+
+        public Foot Foot { get; set; }
     }
 }

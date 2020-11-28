@@ -1,12 +1,9 @@
-﻿using System;
+﻿using Api.Common.Queries;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Features.Coaches.Queries.GetCoaches
 {
-    public class GetCoachesQuery
+    public class GetCoachesQuery : IQuery<IEnumerable<CoachDto>>
     {
         
     }

@@ -1,7 +1,9 @@
-﻿namespace Api.Features.Countries.Queries.GetCountries
+﻿using Api.Common.Queries;
+using System.Collections.Generic;
+
+namespace Api.Features.Countries.Queries.GetCountries
 {
-    public class GetCountriesQuery
-    {
-        
+    public class GetCountriesQuery : IQuery<IEnumerable<CountryDto>>
+    {        
     }
 }
