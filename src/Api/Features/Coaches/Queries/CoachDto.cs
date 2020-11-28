@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Features.Stadiums.GetStadiums
+namespace Api.Features.Coaches.Queries
 {
-    public class GetStadiumsQuery
+    public class CoachDto
     {
         
     }

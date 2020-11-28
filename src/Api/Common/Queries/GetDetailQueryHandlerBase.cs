@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Api.Common.Queries
 {
-    public abstract class GetEntityDetailQueryHandler<TQuery, TEntity, TDto> : IQueryHandler<TQuery, TDto>
+    public abstract class GetDetailQueryHandlerBase<TQuery, TEntity, TDto> : IQueryHandler<TQuery, TDto>
         where TQuery : DetailQuery<TDto>
         where TEntity : Entity
         where TDto : IDto<TEntity>
@@ -15,7 +15,7 @@ namespace Api.Common.Queries
         protected readonly IApplicationDbContext _context;
         protected readonly IMapper _mapper;
 
-        public GetEntityDetailQueryHandler(IApplicationDbContext context, IMapper mapper)
+        public GetDetailQueryHandlerBase(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

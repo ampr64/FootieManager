@@ -1,32 +1,24 @@
-﻿using Api.Extensions;
+﻿using Api.Common.Queries;
+using Api.Extensions;
 using AutoMapper;
 using Core.Common;
-using MediatR;
-using System.Linq;
+using Core.Entities;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Api.Features.Clubs.Queries.GetClubs
 {
-    public class GetClubsQueryHandler : IRequestHandler<GetClubsQuery, GetClubsVm>
+    public class GetClubsQueryHandler : ListQueryHandlerBase<GetClubsQuery, Club, ClubDto>
     {
-        private readonly IApplicationDbContext _context;
-        private readonly IMapper _mapper;
-
         public GetClubsQueryHandler(IApplicationDbContext context, IMapper mapper)
+            : base(context, mapper)
         {
-            _context = context;
-            _mapper = mapper;
         }
 
-        public async Task<GetClubsVm> Handle(GetClubsQuery request, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<ClubDto>> Handle(GetClubsQuery request, CancellationToken cancellationToken)
         {
-            return new GetClubsVm
-            {
-                Clubs = await _context.Clubs
-                    .OrderBy(c => c.Name)
-                    .ProjectToListAsync<ClubDto>(_mapper.ConfigurationProvider, cancellationToken)
-            };
+            return await HandleWithSorting(request, cancellationToken, (c => c.Name, SortDirection.Ascending));
         }
     }
 }
