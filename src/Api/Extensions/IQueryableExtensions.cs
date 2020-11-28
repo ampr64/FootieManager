@@ -36,7 +36,7 @@ namespace Api.Extensions
         {
             IOrderedQueryable<T> result;
 
-            if (typeof(IOrderedQueryable).IsAssignableFrom(query.GetType()))
+            if (typeof(IOrderedQueryable).IsAssignableFrom(query.Expression.Type))
             {
                 result = query as IOrderedQueryable<T>;
                 result = sortCriteria.Direction == SortDirection.Ascending
