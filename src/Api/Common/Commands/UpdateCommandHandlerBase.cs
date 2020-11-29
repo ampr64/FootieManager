@@ -14,7 +14,7 @@ namespace Api.Common.Commands
 
         public UpdateCommandHandlerBase(IApplicationDbContext context) => _context = context;
 
-        public async Task<Unit> Handle(TCommand request, CancellationToken cancellationToken)
+        public virtual async Task<Unit> Handle(TCommand request, CancellationToken cancellationToken)
         {
             var entity = await _context.Set<TEntity>().FindAsync(new object[] { request.Id }, cancellationToken);
 

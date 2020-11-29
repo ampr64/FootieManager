@@ -13,7 +13,7 @@ namespace Api.Common.Commands
 
         public NewCommandHandlerBase(IApplicationDbContext context) => _context = context ?? throw new ArgumentNullException(nameof(context));
 
-        public async Task<int> Handle(TCommand request, CancellationToken cancellationToken)
+        public virtual async Task<int> Handle(TCommand request, CancellationToken cancellationToken)
         {
             var entity = CreateInstanceFromCommand(request);
 

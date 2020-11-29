@@ -21,7 +21,7 @@ namespace Api.Common.Queries
             _mapper = mapper;
         }
 
-        public async Task<TDto> Handle(TQuery request, CancellationToken cancellationToken = default)
+        public virtual async Task<TDto> Handle(TQuery request, CancellationToken cancellationToken = default)
         {
             var entity = await _context.Set<TEntity>().FindAsync(new object[] { request.Id }, cancellationToken);
 
