@@ -1,4 +1,6 @@
 ﻿using Core.Common;
+using Core.Entities;
+using System.Collections.Generic;
 
 namespace Core.Enumerations
 {
@@ -11,6 +13,8 @@ namespace Core.Enumerations
         public static readonly Continent NorthAmerica = new Continent(5, "North America");
         public static readonly Continent Europe = new Continent(6, nameof(Europe));
         public static readonly Continent Oceania = new Continent(7, nameof(Oceania));
+
+        public List<Country> Countries { get; set; }
 
         private Continent(int value, string name) : base(value, name)
         {

@@ -14,8 +14,8 @@ namespace Infrastructure.Persistence.Configurations
                 .IsRequired();
 
             builder.HasOne<Continent>()
-                .WithMany()
-                .HasForeignKey(c => c.ContinentId);
+                .WithMany(c => c.Countries)
+                .HasForeignKey(d => d.ContinentId);
         }
     }
 }

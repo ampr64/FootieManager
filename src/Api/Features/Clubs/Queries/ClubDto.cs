@@ -1,4 +1,6 @@
 ﻿using Api.Common.Mappings;
+using Api.Features.Coaches.Queries;
+using Api.Features.Stadiums.Queries;
 using Core.Entities;
 
 namespace Api.Features.Clubs.Queries
@@ -11,9 +13,7 @@ namespace Api.Features.Clubs.Queries
 
         public string President { get; set; }
 
-        public int? CoachId { get; set; }
-
-        public int StadiumId { get; set; }
+        public StadiumDto Stadium { get; set; }
 
         public int LeagueId { get; set; }
 
@@ -22,5 +22,9 @@ namespace Api.Features.Clubs.Queries
         public int TrophyCount { get; set; }
 
         public string BadgeImageUrl { get; set; }
+
+        public int SquadCount { get; set; }
+
+        public CoachDto Coach { get; set; }
     }
 }
