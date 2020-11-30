@@ -2,6 +2,7 @@
 using Api.Features.Coaches.Commands.NewCoach;
 using Api.Features.Coaches.Commands.UpdateCoach;
 using Api.Features.Coaches.Queries;
+using Api.Features.Coaches.Queries.GetAvailableCoaches;
 using Api.Features.Coaches.Queries.GetCoachDetail;
 using Api.Features.Coaches.Queries.GetCoaches;
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +16,17 @@ namespace Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CoachDto>>> List()
         {
-            var stadiums = await Mediator.Send(new GetCoachesQuery());
+            var coaches = await Mediator.Send(new GetCoachesQuery());
 
-            return Ok(stadiums);
+            return Ok(coaches);
+        }
+
+        [HttpGet("available")]
+        public async Task<ActionResult<IEnumerable<CoachDto>>> ListAvailable()
+        {
+            var availableCoaches = await Mediator.Send(new GetAvailableCoachesQuery());
+
+            return Ok(availableCoaches);
         }
 
         [HttpGet("{id}")]

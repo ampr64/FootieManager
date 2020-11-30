@@ -3,6 +3,7 @@ using Api.Features.Players.Commands.NewPlayer;
 using Api.Features.Players.Commands.UpdatePlayer;
 using Api.Features.Players.Queries;
 using Api.Features.Players.Queries.GetClubPlayers;
+using Api.Features.Players.Queries.GetFreeAgents;
 using Api.Features.Players.Queries.GetPlayerDetail;
 using Api.Features.Players.Queries.GetPlayers;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,14 @@ namespace Api.Controllers
             var stadiums = await Mediator.Send(new GetPlayersQuery());
 
             return Ok(stadiums);
+        }
+
+        [HttpGet("free-agents")]
+        public async Task<ActionResult<IEnumerable<PlayerDto>>> ListFreeAgents()
+        {
+            var freeAgents = await Mediator.Send(new GetFreeAgentsQuery());
+
+            return Ok(freeAgents);
         }
 
         [HttpGet("clubs/{clubId}")]
