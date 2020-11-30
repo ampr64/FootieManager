@@ -10,7 +10,7 @@ namespace Core.Entities
 
         public Club Club { get; }
 
-        public int PositionId { get; set; }
+        public Position Position { get; set; }
 
         public int Height { get; set; }
 
@@ -29,7 +29,7 @@ namespace Core.Entities
         }
         
         public Player(string firstName, string lastName, int countryId, DateTime birthDate, int height, int weight,
-            decimal marketValue, int positionId, int squadNumber, string pictureUrl = null, Foot foot = Foot.Right, int? clubId = null,
+            decimal marketValue, Position position, int squadNumber, string pictureUrl = null, Foot foot = Foot.Right, int? clubId = null,
             decimal? salary = null)
             : base(firstName, lastName, countryId, birthDate, pictureUrl)
         {
@@ -37,7 +37,7 @@ namespace Core.Entities
             Height = height;
             Weight = weight;
             Foot = foot;
-            PositionId = positionId;
+            Position = position;
             MarketValue = marketValue;
             Salary = salary;
             SquadNumber = squadNumber;

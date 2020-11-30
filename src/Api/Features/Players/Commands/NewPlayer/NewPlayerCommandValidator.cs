@@ -26,7 +26,7 @@ namespace Api.Features.Players.Commands.NewPlayer
             RuleFor(p => p.Weight)
                 .InclusiveBetween(45, 180);
 
-            RuleFor(p => p.PositionId)
+            RuleFor(p => p.Position)
                 .IsInEnum();
 
             RuleFor(p => p.Foot)

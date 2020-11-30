@@ -64,7 +64,6 @@ namespace Infrastructure.Persistence
             dbSet switch
             {
                 IQueryable<Continent> continents => Enumeration.GetAll<Continent>(),
-                IQueryable<Position> positions => Enumeration.GetAll<Position>(),
                 _ => Array.Empty<object>()
             };
 

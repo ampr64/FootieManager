@@ -19,7 +19,7 @@ namespace Api.Features.Players.Queries
 
         public int? ClubId { get; set; }
 
-        public int PositionId { get; set; }
+        public Position Position { get; set; }
 
         public int Height { get; set; }
 

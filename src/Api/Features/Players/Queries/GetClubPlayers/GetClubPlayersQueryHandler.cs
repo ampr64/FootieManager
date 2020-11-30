@@ -21,7 +21,7 @@ namespace Api.Features.Players.Queries.GetClubPlayers
         {
             var query = _context.Players.Where(p => p.ClubId == request.ClubId);
 
-            return Handle(query, cancellationToken, (p => p.PositionId, SortDirection.Ascending), (p => p.LastName, SortDirection.Ascending));
+            return Handle(query, cancellationToken, (p => p.Position, SortDirection.Ascending), (p => p.LastName, SortDirection.Ascending));
         }
     }
 }

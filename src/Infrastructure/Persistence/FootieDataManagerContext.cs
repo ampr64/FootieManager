@@ -15,7 +15,6 @@ namespace Infrastructure.Persistence
         public DbSet<Country> Countries { get; set; }
         public DbSet<League> Leagues { get; set; }
         public DbSet<Player> Players { get; set; }
-        public DbSet<Position> Positions { get; set; }
         public DbSet<Stadium> Stadiums { get; set; }
 
         public FootieDataManagerContext(DbContextOptions options)
