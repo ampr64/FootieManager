@@ -35,15 +35,17 @@ namespace Api.Features.Players.Commands.UpdatePlayer
             RuleFor(p => p.MarketValue)
                 .GreaterThan(0);
 
+            RuleFor(p => p.Salary)
+                .GreaterThan(0)
+                .When(HasClub);
+
             RuleFor(p => p.SquadNumber)
-                .InclusiveBetween(1, 99);
+                .InclusiveBetween(1, 99)
+                .When(HasClub);
 
             RuleFor(c => c.BirthDate)
                 .Must(BeBetween15And50YearsOld)
                 .WithMessage("A player must be between 15 and 50 years old.");
-
-            RuleFor(p => p.Salary)
-                .GreaterThan(0);
         }
 
         private bool BeBetween15And50YearsOld(DateTime birthDate)
@@ -52,5 +54,7 @@ namespace Api.Features.Players.Commands.UpdatePlayer
 
             return age >= 20 && age <= 50;
         }
+
+        private bool HasClub(UpdatePlayerCommand player) => player.ClubId != null;
     }
 }

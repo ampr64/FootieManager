@@ -36,11 +36,12 @@ namespace Api.Features.Players.Commands.NewPlayer
                 .GreaterThan(0);
 
             RuleFor(p => p.Salary)
-                .GreaterThan(0);
+                .GreaterThan(0)
+                .When(HasClub);
 
             RuleFor(p => p.SquadNumber)
                 .InclusiveBetween(1, 99)
-                .When(p => p.ClubId != null);
+                .When(HasClub);
 
             RuleFor(c => c.BirthDate)
                 .Must(BeBetween15And50YearsOld)
@@ -53,5 +54,7 @@ namespace Api.Features.Players.Commands.NewPlayer
 
             return age >= 20 && age <= 50;
         }
+
+        private bool HasClub(NewPlayerCommand player) => player.ClubId != null;
     }
 }
