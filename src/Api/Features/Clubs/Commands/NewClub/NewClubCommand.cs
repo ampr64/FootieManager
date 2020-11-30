@@ -1,8 +1,10 @@
 ﻿using Api.Common.Commands;
+using Api.Common.Mappings;
+using Core.Entities;
 
 namespace Api.Features.Clubs.Commands.NewClub
 {
-    public class NewClubCommand : ICommand<int>
+    public class NewClubCommand : ICommand<int>, ICommandMap<Club>
     {
         public string Name { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using Api.Common.Commands;
+using AutoMapper;
 using Core.Common;
 using Core.Entities;
 
@@ -6,15 +7,9 @@ namespace Api.Features.Countries.Commands.NewCountry
 {
     public class NewCountryCommandHandler : NewCommandHandlerBase<NewCountryCommand, Country>
     {
-        public NewCountryCommandHandler(IApplicationDbContext context)
-            : base(context)
+        public NewCountryCommandHandler(IApplicationDbContext context, IMapper mapper)
+            : base(context, mapper)
         {
         }
-
-        protected override Country CreateInstanceFromCommand(NewCountryCommand request) =>
-            new Country(
-                request.Name,
-                request.ContinentId,
-                request.FlagImageUrl);
     }
 }

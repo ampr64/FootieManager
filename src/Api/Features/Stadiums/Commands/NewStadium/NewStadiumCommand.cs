@@ -1,8 +1,10 @@
 ﻿using Api.Common.Commands;
+using Api.Common.Mappings;
+using Core.Entities;
 
 namespace Api.Features.Stadiums.Commands.NewStadium
 {
-    public class NewStadiumCommand : ICommand<int>
+    public class NewStadiumCommand : ICommand<int>, ICommandMap<Stadium>
     {
         public string Name { get; set; }
 

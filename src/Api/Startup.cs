@@ -1,4 +1,6 @@
 using Api.Configurations;
+using Api.Filters;
+using FluentValidation.AspNetCore;
 using Infrastructure.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,7 +33,11 @@ namespace Api
 
             services.ConfigureSwagger();
 
-            services.AddControllers()
+            services.ConfigureFluentValidations();
+
+            services.AddControllers(options =>
+                options.Filters.Add(new ApiExceptionFilterAttribute()))
+                    .AddFluentValidation()
                     .AddNewtonsoftJson(opts =>
                     {
                         opts.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;

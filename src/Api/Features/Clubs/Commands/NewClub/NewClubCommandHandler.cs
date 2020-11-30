@@ -1,4 +1,5 @@
 ﻿using Api.Common.Commands;
+using AutoMapper;
 using Core.Common;
 using Core.Entities;
 
@@ -6,20 +7,9 @@ namespace Api.Features.Clubs.Commands.NewClub
 {
     public class NewClubCommandHandler : NewCommandHandlerBase<NewClubCommand, Club>
     {
-        public NewClubCommandHandler(IApplicationDbContext context) :
-            base(context)
+        public NewClubCommandHandler(IApplicationDbContext context, IMapper mapper) :
+            base(context, mapper)
         {
         }
-
-        protected override Club CreateInstanceFromCommand(NewClubCommand request) => 
-            new Club(
-                request.Name,
-                request.LeagueId,
-                request.President,
-                request.YearFounded,
-                request.TrophyCount,
-                request.StadiumId,
-                request.CoachId,
-                request.BadgeImageUrl);
     }
 }

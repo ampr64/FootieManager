@@ -10,7 +10,7 @@ namespace Api.Features.Players.Commands.UpdatePlayer
 
         public string LastName { get; set; }
 
-        public int CountryId { get; set; }
+        public int? CountryId { get; set; }
 
         public DateTime BirthDate { get; set; }
 

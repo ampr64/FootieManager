@@ -1,16 +1,18 @@
 ﻿using Api.Common.Commands;
+using Api.Common.Mappings;
+using Core.Entities;
 using Core.Enums;
 using System;
 
 namespace Api.Features.Players.Commands.NewPlayer
 {
-    public class NewPlayerCommand : ICommand<int>
+    public class NewPlayerCommand : ICommand<int>, ICommandMap<Player>
     {
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
 
-        public int CountryId { get; set; }
+        public int? CountryId { get; set; }
 
         public DateTime BirthDate { get; set; }
 
@@ -30,6 +32,6 @@ namespace Api.Features.Players.Commands.NewPlayer
 
         public decimal? Salary { get; set; }
 
-        public int SquadNumber { get; set; }
+        public int? SquadNumber { get; set; }
     }
 }

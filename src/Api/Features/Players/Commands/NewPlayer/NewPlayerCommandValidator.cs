@@ -39,7 +39,8 @@ namespace Api.Features.Players.Commands.NewPlayer
                 .GreaterThan(0);
 
             RuleFor(p => p.SquadNumber)
-                .InclusiveBetween(1, 99);
+                .InclusiveBetween(1, 99)
+                .When(p => p.ClubId != null);
 
             RuleFor(c => c.BirthDate)
                 .Must(BeBetween15And50YearsOld)

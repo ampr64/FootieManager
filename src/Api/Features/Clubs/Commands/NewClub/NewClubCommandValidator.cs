@@ -14,7 +14,7 @@ namespace Api.Features.Clubs.Commands.NewClub
                 .MaximumLength(50);
 
             RuleFor(c => c.TrophyCount)
-                .GreaterThanOrEqualTo(0);
+                .InclusiveBetween(0, int.MaxValue);
 
             RuleFor(c => c.YearFounded)
                 .GreaterThan(1800);

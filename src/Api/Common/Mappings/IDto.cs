@@ -2,8 +2,8 @@
 
 namespace Api.Common.Mappings
 {
-    public interface IDto<T>
+    public interface IDto<TSource>
     {
-        void Map(Profile profile) => profile.CreateMap(typeof(T), GetType());
+        void Map(Profile profile) => profile.CreateMap(typeof(TSource), GetType());
     }
 }

@@ -9,7 +9,7 @@ namespace Api.Features.Coaches.Commands.UpdateCoach
 
         public string LastName { get; set; }
 
-        public int CountryId { get; set; }
+        public int? CountryId { get; set; }
 
         public DateTime BirthDate { get; set; }
 

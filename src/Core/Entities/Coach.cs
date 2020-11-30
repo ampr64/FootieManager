@@ -18,9 +18,9 @@ namespace Core.Entities
         public Coach(
             string firstName,
             string lastName,
-            int countryId,
             DateTime birthDate,
-            string pictureUrl,
+            int? countryId = null,
+            string pictureUrl= null,
             int? clubId = null,
             decimal? salary = null)
             : base(firstName, lastName, countryId, birthDate, pictureUrl)

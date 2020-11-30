@@ -1,23 +1,15 @@
 ﻿using Api.Common.Commands;
+using AutoMapper;
 using Core.Common;
 using Core.Entities;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Api.Features.Leagues.Commands.NewLeague
 {
     public class NewLeagueCommandHandler : NewCommandHandlerBase<NewLeagueCommand, League>
     {
-        public NewLeagueCommandHandler(IApplicationDbContext context)
-            : base(context)
+        public NewLeagueCommandHandler(IApplicationDbContext context, IMapper mapper)
+            : base(context, mapper)
         {
         }
-
-        protected override League CreateInstanceFromCommand(NewLeagueCommand request) =>
-            new League(
-                request.Name,
-                request.CountryId,
-                request.Division,
-                request.LogoImageUrl);
     }
 }

@@ -1,8 +1,10 @@
 ﻿using Api.Common.Commands;
+using Api.Common.Mappings;
+using Core.Entities;
 
 namespace Api.Features.Leagues.Commands.NewLeague
 {
-    public class NewLeagueCommand : ICommand<int>
+    public class NewLeagueCommand : ICommand<int>, ICommandMap<League>
     {
         public string Name { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using Api.Common.Commands;
+using AutoMapper;
 using Core.Common;
 using Core.Entities;
 
@@ -7,19 +8,9 @@ namespace Api.Features.Coaches.Commands.NewCoach
     public class NewCoachCommandHandler : NewCommandHandlerBase<NewCoachCommand, Coach>
     {
 
-        public NewCoachCommandHandler(IApplicationDbContext context)
-            : base(context)
+        public NewCoachCommandHandler(IApplicationDbContext context, IMapper mapper)
+            : base(context, mapper)
         {
         }
-
-        protected override Coach CreateInstanceFromCommand(NewCoachCommand request) =>
-            new Coach(
-                request.FirstName,
-                request.LastName,
-                request.CountryId,
-                request.BirthDate,
-                request.PictureUrl,
-                request.ClubId,
-                request.Salary);
     }
 }

@@ -9,7 +9,7 @@ namespace Core.Common
         
         public string LastName { get; set; }
 
-        public int CountryId { get; set; }
+        public int? CountryId { get; set; }
 
         public Country Country { get; set; }
 
@@ -21,7 +21,7 @@ namespace Core.Common
         {
         }
 
-        protected Person(string firstName, string lastName, int countryId, DateTime birthDate, string pictureUrl)
+        protected Person(string firstName, string lastName, int? countryId, DateTime birthDate, string pictureUrl)
         {
             FirstName = firstName;
             LastName = lastName;

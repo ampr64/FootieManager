@@ -14,21 +14,24 @@ namespace Api.Common.Mappings
 
         private void ApplyMappingsFromAssembly(Assembly assembly)
         {
-            var dtoInterfaceName = typeof(IDto<>).Name;
-            var methodName = nameof(IDto<object>.Map);
+            ApplyMappings(assembly, typeof(IDto<>).Name, nameof(IDto<object>.Map));
+            ApplyMappings(assembly, typeof(ICommandMap<>).Name, nameof(ICommandMap<object>.Map));
+        }
 
-            var dtoTypes = assembly.GetExportedTypes()
-                .Where(t => t.GetInterface(dtoInterfaceName) is not null)
+        private void ApplyMappings(Assembly assembly, string interfaceName, string methodName)
+        {
+            var implementationTypes = assembly.GetExportedTypes()
+                .Where(t => t.GetInterface(interfaceName) != null)
                 .ToList();
 
-            foreach (var dtoType in dtoTypes)
+            foreach (var implementationType in implementationTypes)
             {
-                var dtoInstance = Activator.CreateInstance(dtoType);
+                var instance = Activator.CreateInstance(implementationType);
 
-                var mapMethod = dtoType.GetMethod(methodName) ??
-                    dtoType.GetInterface(typeof(IDto<>).Name)?.GetMethod(methodName);
+                var mapMethod = implementationType.GetMethod(methodName) ??
+                    implementationType.GetInterface(interfaceName)?.GetMethod(methodName);
 
-                mapMethod?.Invoke(dtoInstance, new object[] { this });
+                mapMethod?.Invoke(instance, new object[] { this });
             }
         }
     }
