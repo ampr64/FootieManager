@@ -36,9 +36,11 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        public async Task<int> New(NewClubCommand command)
+        public async Task<IActionResult> New(NewClubCommand command)
         {
-            return await Mediator.Send(command);
+            var id = await Mediator.Send(command);
+
+            return new CreatedResult(nameof(GetDetail), id);
         }
 
         [HttpPut("{id}")]

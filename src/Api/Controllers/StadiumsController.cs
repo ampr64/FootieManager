@@ -31,7 +31,7 @@ namespace Api.Controllers
         {
             var id = await Mediator.Send(command);
 
-            return CreatedAtAction(nameof(GetDetail), id);
+            return new CreatedResult(nameof(GetDetail), id);
         }
 
         [HttpPut("{id}")]
