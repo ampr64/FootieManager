@@ -4,6 +4,7 @@ using AutoMapper;
 using Core.Common;
 using Core.Entities;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,7 +19,10 @@ namespace Api.Features.Leagues.Queries.GetLeagues
 
         public override Task<IEnumerable<LeagueDto>> Handle(GetLeaguesQuery request, CancellationToken cancellationToken)
         {
-            return Handle(null, cancellationToken, (l => l.CountryId, SortDirection.Ascending), (l => l.Division, SortDirection.Ascending));
+            var query = _context.Leagues.OrderBy(l => l.CountryId)
+                .ThenBy(l => l.Division);
+
+            return Handle(query, cancellationToken);
         }
     }
 }

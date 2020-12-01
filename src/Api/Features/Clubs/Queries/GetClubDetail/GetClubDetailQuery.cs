@@ -2,7 +2,7 @@
 
 namespace Api.Features.Clubs.Queries.GetClubDetail
 {
-    public class GetClubDetailQuery : DetailQuery<ClubDto>
+    public class GetClubDetailQuery : DetailQuery<ClubDetailDto>
     {
         public GetClubDetailQuery(int id)
             : base(id)

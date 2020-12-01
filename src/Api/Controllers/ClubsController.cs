@@ -22,7 +22,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ClubDto>> GetDetail(int id)
+        public async Task<ActionResult<ClubDetailDto>> GetDetail(int id)
         {
             return await Mediator.Send(new GetClubDetailQuery(id));
         }

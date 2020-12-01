@@ -19,9 +19,12 @@ namespace Api.Features.Players.Queries.GetClubPlayers
 
         public override Task<IEnumerable<PlayerDto>> Handle(GetClubPlayersQuery request, CancellationToken cancellationToken)
         {
-            var query = _context.Players.Where(p => p.ClubId == request.ClubId);
+            var query = _context.Players.Where(p => p.ClubId == request.ClubId)
+                .OrderBy(p => p.Position)
+                .ThenBy(p => p.FirstName)
+                .ThenBy(p => p.LastName);
 
-            return Handle(query, cancellationToken, (p => p.Position, SortDirection.Ascending), (p => p.LastName, SortDirection.Ascending));
+            return Handle(query, cancellationToken);
         }
     }
 }

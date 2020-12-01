@@ -19,9 +19,10 @@ namespace Api.Features.Clubs.Queries.GetLeagueClubs
 
         public override async Task<IEnumerable<ClubDto>> Handle(GetLeagueClubsQuery request, CancellationToken cancellationToken)
         {
-            var query = _context.Clubs.Where(c => c.LeagueId == request.LeagueId);
+            var query = _context.Clubs.Where(c => c.LeagueId == request.LeagueId)
+                .OrderBy(c => c.Name);
 
-            return await Handle(query, cancellationToken, (c => c.Name, SortDirection.Ascending));
+            return await Handle(query, cancellationToken);
         }
     }
 }

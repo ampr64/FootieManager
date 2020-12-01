@@ -5,7 +5,6 @@ using Core.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -31,15 +30,11 @@ namespace Api.Common.Queries
                 .ProjectToListAsync<TDto>(_mapper.ConfigurationProvider, cancellationToken);
         }
 
-        protected async Task<IEnumerable<TDto>> Handle(IQueryable<TEntity> query = null, CancellationToken cancellationToken = default, params (Expression<Func<TEntity, object>> KeySelector, SortDirection Direction)[] sortCriterias)
+        protected async Task<IEnumerable<TDto>> Handle(IQueryable<TEntity> query, CancellationToken cancellationToken = default)
         {
             query ??= _context.Set<TEntity>();
 
-            if (sortCriterias is null || !sortCriterias.Any())
-                sortCriterias = new (Expression<Func<TEntity, object>>, SortDirection)[] { (c => c.Id, SortDirection.Ascending) };
-
             return await query
-                .OrderByCriterias(sortCriterias)
                 .ProjectToListAsync<TDto>(_mapper.ConfigurationProvider, cancellationToken);
         }
     }
