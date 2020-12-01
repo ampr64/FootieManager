@@ -5,7 +5,7 @@ using Api.Features.Stadiums.Queries;
 using Core.Entities;
 using System.Collections.Generic;
 
-namespace Api.Features.Clubs.Queries.GetClubDetail
+namespace Api.Features.Clubs.Queries
 {
     public class ClubDetailDto : IDto<Club>
     {
