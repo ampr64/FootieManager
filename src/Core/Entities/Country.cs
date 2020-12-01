@@ -9,16 +9,19 @@ namespace Core.Entities
 
         public int ContinentId { get; set; }
 
+        public string IsoCode { get; set; }
+
         public string FlagImageUrl { get; set; }
 
         public List<League> Leagues { get; } = new();
 
         public Country() { }
 
-        public Country(string name, int continentId, string flagImageUrl = null)
+        public Country(string name, int continentId, string isoCode = null, string flagImageUrl = null)
         {
             Name = name;
             ContinentId = continentId;
+            IsoCode = isoCode;
             FlagImageUrl = flagImageUrl;
         }
     }

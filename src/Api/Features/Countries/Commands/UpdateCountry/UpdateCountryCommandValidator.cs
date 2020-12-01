@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 
-namespace Api.Features.Countries.Commands.NewCountry
+namespace Api.Features.Countries.Commands.UpdateCountry
 {
-    public class NewCountryCommandValidator : AbstractValidator<NewCountryCommand>
+    public class UpdateCountryCommandValidator : AbstractValidator<UpdateCountryCommand>
     {
-        public NewCountryCommandValidator()
+        public UpdateCountryCommandValidator()
         {
             RuleFor(c => c.Name)
                 .NotEmpty()

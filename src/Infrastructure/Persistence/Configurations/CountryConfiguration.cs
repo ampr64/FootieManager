@@ -13,6 +13,9 @@ namespace Infrastructure.Persistence.Configurations
                 .HasMaxLength(50)
                 .IsRequired();
 
+            builder.Property(c => c.IsoCode)
+                .HasMaxLength(2);
+
             builder.HasOne<Continent>()
                 .WithMany(c => c.Countries)
                 .HasForeignKey(d => d.ContinentId);
