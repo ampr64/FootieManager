@@ -3,12 +3,11 @@ using CsvHelper.Configuration;
 
 namespace Infrastructure.Files.Maps
 {
-    internal sealed class PlayerMap : ClassMap<Player>
+    public sealed class PlayerMap : ClassMap<Player>
     {
-        internal PlayerMap(CsvConfiguration configuration)
+        public PlayerMap(CsvConfiguration configuration)
         {
             AutoMap(configuration);
-            Map(m => m.PictureUrl).Name(nameof(Player.PictureUrl));
         }
     }
 }

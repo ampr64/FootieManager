@@ -3,13 +3,10 @@ using CsvHelper.Configuration;
 
 namespace Infrastructure.Files.Maps
 {
-    internal class StadiumMap : ClassMap<Stadium>
+    public sealed class StadiumMap : ClassMap<Stadium>
     {
-        internal StadiumMap()
+        public StadiumMap(CsvConfiguration configuration)
         {
-            Map(m => m.Name).Name(nameof(Stadium.Name));
-            Map(m => m.Capacity).Name(nameof(Stadium.Capacity));
-            Map(m => m.YearBuilt).Name(nameof(Stadium.YearBuilt));
         }
     }
 }

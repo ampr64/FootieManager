@@ -18,7 +18,7 @@ namespace Api.Features.Countries.Queries.GetCountries
 
         public override async Task<IEnumerable<CountryDto>> Handle(GetCountriesQuery request, CancellationToken cancellationToken)
         {
-            return await Handle(null, cancellationToken, (c => c.ContinentId, SortDirection.Ascending), (c => c.Name, SortDirection.Ascending));
+            return await Handle(null, cancellationToken, (c => c.Name, SortDirection.Ascending));
         }
     }
 }

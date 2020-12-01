@@ -5,6 +5,8 @@ namespace Api.Features.Countries.Queries
 {
     public class CountryDto : IDto<Country>
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public int ContinentId { get; set; }

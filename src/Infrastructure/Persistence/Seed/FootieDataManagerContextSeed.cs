@@ -3,7 +3,6 @@ using Core.Entities;
 using Core.Enumerations;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -52,19 +51,18 @@ namespace Infrastructure.Persistence
                         ? _csvSeeder.RetrieveData(type, csv)
                         : GetPredefinedValues(dbSet);
 
-                    if (seedData != null && seedData.Any())
-                        await context.AddRangeAsync(seedData);
+                    seedData?.ForEach(x => context.Entry(x).State = EntityState.Added);
                 }
             }
 
             await context.SaveChangesAsync();
         }
 
-        private IEnumerable<object> GetPredefinedValues(IQueryable<object> dbSet) =>
+        private List<object> GetPredefinedValues(IQueryable<object> dbSet) =>
             dbSet switch
             {
-                IQueryable<Continent> continents => Enumeration.GetAll<Continent>(),
-                _ => Array.Empty<object>()
+                IQueryable<Continent> continents => Enumeration.GetAll<Continent>().ToList<object>(),
+                _ => new()
             };
 
         private string GetFilePath(Type type)

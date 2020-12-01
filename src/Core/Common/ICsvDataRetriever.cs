@@ -5,6 +5,6 @@ namespace Core.Common
 {
     public interface ICsvDataRetriever
     {
-        IEnumerable<object> RetrieveData(Type type, string path);
+        List<object> RetrieveData(Type type, string path);
     }
 }

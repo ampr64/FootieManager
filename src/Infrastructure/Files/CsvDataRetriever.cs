@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace Infrastructure.Files
 {
@@ -18,12 +19,21 @@ namespace Infrastructure.Files
             Delimiter = ","
         };
 
-        public IEnumerable<object> RetrieveData(Type type, string path)
+        public List<object> RetrieveData(Type type, string path)
         {
             using var reader = new StreamReader(path);
             using var csv = new CsvReader(reader, _configuration);
 
+            var classMapType = FindClassMapType(type);
+
+            if (classMapType != null)
+                Activator.CreateInstance(classMapType, _configuration);
+
             return csv.GetRecords(type).ToList();
         }
+
+        private static Type FindClassMapType(Type type) =>
+            Assembly.GetExecutingAssembly().DefinedTypes
+                .FirstOrDefault(t => t.BaseType == typeof(ClassMap<>).MakeGenericType(type));
     }
 }

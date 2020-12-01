@@ -15,9 +15,9 @@ namespace Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CountryDto>>> List()
         {
-            var stadiums = await Mediator.Send(new GetCountriesQuery());
+            var countries = await Mediator.Send(new GetCountriesQuery());
 
-            return Ok(stadiums);
+            return Ok(countries);
         }
 
         [HttpGet("{id}")]

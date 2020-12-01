@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using System.Threading.Tasks;
 using Api.Extensions;
@@ -8,7 +7,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Api
 {
@@ -18,28 +16,18 @@ namespace Api
         {
             var host = BuildHost(args);
 
-            try
+            host.MigrateDbContext<FootieDataManagerContext>((context, services) =>
             {
-                host.MigrateDbContext<FootieDataManagerContext>((context, services) =>
-                {
-                    var env = services.GetService<IWebHostEnvironment>();
-                    var configuration = services.GetService<IConfiguration>();
-                    var csvSeeder = services.GetRequiredService<ICsvDataRetriever>(); 
+                var env = services.GetService<IWebHostEnvironment>();
+                var configuration = services.GetService<IConfiguration>();
+                var csvSeeder = services.GetRequiredService<ICsvDataRetriever>();
 
-                    new FootieDataManagerContextSeed(env, configuration, csvSeeder)
-                    .SeedAsync(context)
-                    .Wait();
-                });
+                new FootieDataManagerContextSeed(env, configuration, csvSeeder)
+                .SeedAsync(context)
+                .Wait();
+            });
 
-                await host.RunAsync();
-            }
-            catch (Exception ex)
-            {
-                using var scope = host.Services.CreateScope();
-                var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-
-                logger.LogError(ex, "Program terminated unexpectedly.");
-            }
+            await host.RunAsync();
         }
 
         public static IHost BuildHost(string[] args) =>

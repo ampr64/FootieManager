@@ -11,7 +11,7 @@ namespace Core.Entities
 
         public int Division { get; set; }
 
-        public Country Country { get; set; }
+        public Country Country { get; set; } = null;
 
         public string LogoImageUrl { get; set; }
 

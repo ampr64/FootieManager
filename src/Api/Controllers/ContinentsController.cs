@@ -12,9 +12,9 @@ namespace Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ContinentDto>>> List()
         {
-            var stadiums = await Mediator.Send(new ListContinentsQuery());
+            var continents = await Mediator.Send(new ListContinentsQuery());
 
-            return Ok(stadiums);
+            return Ok(continents);
         }
 
         [HttpGet("{id}")]

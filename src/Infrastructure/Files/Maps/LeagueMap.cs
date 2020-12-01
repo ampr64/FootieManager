@@ -3,12 +3,11 @@ using CsvHelper.Configuration;
 
 namespace Infrastructure.Files.Maps
 {
-    internal sealed class LeagueMap : ClassMap<League>
+    public sealed class LeagueMap : ClassMap<League>
     {
-        internal LeagueMap(CsvConfiguration configuration)
+        public LeagueMap(CsvConfiguration configuration)
         {
             AutoMap(configuration);
-            Map(m => m.LogoImageUrl).Name(nameof(League.LogoImageUrl));
         }
     }
 }

@@ -2,6 +2,7 @@
 using Api.Features.Leagues.Commands.NewLeague;
 using Api.Features.Leagues.Commands.UpdateLeague;
 using Api.Features.Leagues.Queries;
+using Api.Features.Leagues.Queries.GetCountryLeagues;
 using Api.Features.Leagues.Queries.GetLeagueDetail;
 using Api.Features.Leagues.Queries.GetLeagues;
 using Microsoft.AspNetCore.Mvc;
@@ -15,15 +16,23 @@ namespace Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LeagueDto>>> List()
         {
-            var stadiums = await Mediator.Send(new GetLeaguesQuery());
+            var leagues = await Mediator.Send(new GetLeaguesQuery());
 
-            return Ok(stadiums);
+            return Ok(leagues);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<LeagueDto>> GetDetail(int id)
         {
             return await Mediator.Send(new GetLeagueDetailQuery(id));
+        }
+
+        [HttpGet("countries/{countryId}")]
+        public async Task<ActionResult<IEnumerable<LeagueDto>>> GetCountryLeagues(int countryId)
+        {
+            var leagues = await Mediator.Send(new GetCountryLeaguesQuery(countryId));
+
+            return Ok(leagues);
         }
 
         [HttpPost]
