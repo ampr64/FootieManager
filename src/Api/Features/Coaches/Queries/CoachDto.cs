@@ -6,6 +6,8 @@ namespace Api.Features.Coaches.Queries
 {
     public class CoachDto : IDto<Coach>
     {
+        public int Id { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }

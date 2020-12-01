@@ -7,6 +7,8 @@ namespace Api.Features.Players.Queries
 {
     public class PlayerDto : IDto<Player>
     {
+        public int Id { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
