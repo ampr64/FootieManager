@@ -1,5 +1,5 @@
 ﻿using Api.Common.Core;
-using Core.Common;
+using Core.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Api.Configurations

@@ -20,7 +20,7 @@ namespace Api.Features.Clubs.Queries.GetClubDetail
             var clubDetail = await _context.Clubs.Include(c => c.Coach)
                 .Include(c => c.Squad)
                 .Include(c => c.Stadium)
-                .FirstOrDefaultAsync(cancellationToken);
+                .FirstOrDefaultAsync(c => c.Id == request.Id, cancellationToken);
 
             return _mapper.Map<Club, ClubDetailDto>(clubDetail);
         }

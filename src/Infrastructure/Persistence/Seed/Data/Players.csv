@@ -1,4 +1,4 @@
-﻿FirstName,LastName,CountryId,BirthDate,Height,Weight,ClubId,PositionId,Foot,SquadNumber,MarketValue,Salary,PictureUrl
+﻿FirstName,LastName,CountryId,BirthDate,Height,Weight,ClubId,Position,Foot,SquadNumber,MarketValue,Salary,PictureUrl
 Franco,Armani,2,10/16/1986,189,85,1,1,1,1,6000000,240000,https://tmssl.akamaized.net/images/portrait/header/119634-1591345987.jpg?lm=1591345981
 Javier,Pinola,2,2/24/1983,180,77,1,2,2,22,800000,130000,https://tmssl.akamaized.net/images/portrait/header/7358-1405581135.jpg?lm=1433144917
 Milton,Casco,2,4/11/1988,169,69,1,2,1,20,2400000,145000,https://tmssl.akamaized.net/images/portrait/header/115183-1471523614.png?lm=1471523636

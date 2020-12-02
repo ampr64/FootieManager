@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core.Common
+namespace Core.Services
 {
     public interface IAgeCalculator
     {

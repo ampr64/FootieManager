@@ -1,4 +1,5 @@
-﻿using Api.Common.Mappings;
+﻿using Api.Common.Core;
+using Api.Common.Mappings;
 using Core.Entities;
 using System;
 
@@ -15,6 +16,8 @@ namespace Api.Features.Coaches.Queries
         public int? CountryId { get; set; }
 
         public DateTime BirthDate { get; set; }
+
+        public int Age => new AgeCalculator().CalculateAge(BirthDate);
 
         public string PictureUrl { get; set; }
 

@@ -11,7 +11,7 @@ namespace Api.Features.Clubs.Queries
 
         public string President { get; set; }
 
-        public int StadiumId { get; set; }
+        public int? StadiumId { get; set; }
 
         public int LeagueId { get; set; }
 
@@ -23,6 +23,6 @@ namespace Api.Features.Clubs.Queries
 
         public int SquadCount { get; set; }
 
-        public int CoachId { get; set; }
+        public int? CoachId { get; set; }
     }
 }
