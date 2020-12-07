@@ -10,7 +10,12 @@ namespace Api.Configurations
         {
             services.AddSwaggerGen(config =>
             {
-                config.SwaggerDoc("v1", new OpenApiInfo { Title = "FootieManager App", Version = "v1" });
+                config.SwaggerDoc("v1", new OpenApiInfo
+                { 
+                    Title = "FootieManager App",
+                    Version = "v1",
+                    Description = "Demo .NET Core restful API implementing CQRS and Clean Architecture."
+                });
             });
             services.AddSwaggerGenNewtonsoftSupport();
 
@@ -23,7 +28,8 @@ namespace Api.Configurations
 
             app.UseSwaggerUI(config =>
             {
-                config.SwaggerEndpoint("/swagger/v1/swagger.json", "FootieManager App");
+                config.SwaggerEndpoint("/swagger/v1/swagger.json", "FootieManager App V1");
+                config.RoutePrefix = string.Empty;
             });
         }
     }
