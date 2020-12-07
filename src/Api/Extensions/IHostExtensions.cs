@@ -3,12 +3,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading.Tasks;
 
 namespace Api.Extensions
 {
     public static class IHostExtensions
     {
-        public static IHost MigrateDbContext<TContext>(this IHost host, Action<TContext, IServiceProvider> seedAction)
+        public static async Task<IHost> MigrateDbContextAsync<TContext>(this IHost host, Action<TContext, IServiceProvider> seedAction)
             where TContext : DbContext
         {
             using var scope = host.Services.CreateScope();
@@ -18,7 +19,7 @@ namespace Api.Extensions
             {
                 var context = services.GetRequiredService<TContext>();
 
-                InvokeSeeder(seedAction, context, services);
+                await InvokeSeeder(seedAction, context, services);
             }
             catch (Exception ex)
             {
@@ -32,11 +33,11 @@ namespace Api.Extensions
             return host;
         }
 
-        private static void InvokeSeeder<TContext>(Action<TContext, IServiceProvider> seedAction, TContext context, IServiceProvider services)
+        private static async Task InvokeSeeder<TContext>(Action<TContext, IServiceProvider> seedAction, TContext context, IServiceProvider services)
             where TContext : DbContext
         {
             if (context.Database.IsSqlServer())
-                context.Database.Migrate();
+                await context.Database.MigrateAsync();
 
             seedAction(context, services);
         }
