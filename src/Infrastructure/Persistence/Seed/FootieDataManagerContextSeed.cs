@@ -36,26 +36,29 @@ namespace Infrastructure.Persistence
 
         public async Task SeedAsync(FootieDataManagerContext context)
         {
-            foreach (var entityType in context.Model.GetEntityTypes())
+            using (context)
             {
-                var type = entityType.ClrType;
-                var setMethod = context.GetType().GetMethod(nameof(context.Set)).MakeGenericMethod(type);
-
-                IQueryable<dynamic> dbSet = setMethod?.Invoke(context, null) as IQueryable<dynamic>;
-
-                if (!await dbSet?.AnyAsync())
+                foreach (var entityType in context.Model.GetEntityTypes())
                 {
-                    var csv = GetFilePath(type);
+                    var type = entityType.ClrType;
+                    var setMethod = context.GetType().GetMethod(nameof(context.Set)).MakeGenericMethod(type);
 
-                    var seedData = File.Exists(csv)
-                        ? _csvSeeder.RetrieveData(type, csv)
-                        : GetPredefinedValues(dbSet);
+                    IQueryable<dynamic> dbSet = setMethod?.Invoke(context, null) as IQueryable<dynamic>;
 
-                    seedData?.ForEach(x => context.Entry(x).State = EntityState.Added);
+                    if (!await dbSet?.AnyAsync())
+                    {
+                        var csv = GetFilePath(type);
+
+                        var seedData = File.Exists(csv)
+                            ? _csvSeeder.RetrieveData(type, csv)
+                            : GetPredefinedValues(dbSet);
+
+                        seedData?.ForEach(x => context.Entry(x).State = EntityState.Added);
+                    }
                 }
-            }
 
-            await context.SaveChangesAsync();
+                await context.SaveChangesAsync();
+            }
         }
 
         private List<object> GetPredefinedValues(IQueryable<object> dbSet) =>

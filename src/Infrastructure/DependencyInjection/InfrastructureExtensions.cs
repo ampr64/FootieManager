@@ -4,7 +4,6 @@ using Infrastructure.Files;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace Infrastructure.DependencyInjection
 {
@@ -15,17 +14,17 @@ namespace Infrastructure.DependencyInjection
             if (configuration.GetValue<bool>(nameof(InMemoryDbContextOptionsExtensions.UseInMemoryDatabase)))
             {
                 container.AddDbContext<FootieDataManagerContext>(options =>
-                    options.UseInMemoryDatabase(nameof(FootieDataManagerContext)));
+                    options.UseInMemoryDatabase("FootieDataManagerDb"));
             }
             else
             {
                 container.AddDbContext<FootieDataManagerContext>(options =>
                     options.UseSqlServer(
                         configuration.GetConnectionString("FootieDataManagerDb"),
-                        b => b.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName)));
+                        b => b.MigrationsAssembly(typeof(FootieDataManagerContext).Assembly.FullName)));
             }
                         
-            container.AddScoped<IApplicationDbContext, FootieDataManagerContext>();
+            container.AddScoped<IApplicationDbContext,FootieDataManagerContext>();
             container.AddTransient<ICsvDataRetriever, CsvDataRetriever>();
 
             return container;
