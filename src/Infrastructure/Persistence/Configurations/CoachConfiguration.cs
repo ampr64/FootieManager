@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -15,6 +16,9 @@ namespace Infrastructure.Persistence.Configurations
             builder.Property(c => c.LastName)
                 .HasMaxLength(50)
                 .IsRequired();
+
+            builder.Property(c => c.Salary)
+                .HasPrecision(15, 2);
 
             builder.HasOne(c => c.Club)
                 .WithOne(c => c.Coach)
