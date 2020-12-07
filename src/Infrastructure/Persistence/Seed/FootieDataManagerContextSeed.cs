@@ -1,79 +1,39 @@
 ﻿using Core.Common;
-using Core.Entities;
-using Core.Enumerations;
+using Core.Services;
+using Infrastructure.Persistence.Seed;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence
 {
-    public class FootieDataManagerContextSeed
+    public class FootieDataManagerContextSeed : IContextSeeder<FootieDataManagerContext>
     {
-        private readonly ICsvDataRetriever _csvSeeder;
+        private readonly ICsvDataRetriever _csvDataRetriever;
+        private readonly IDatabaseContextSeeder<FootieDataManagerContext> _databaseSeeder;
+        private readonly IMemoryContextSeeder<FootieDataManagerContext> _memorySeeder;
         private readonly string _seedFilesPath;
 
-        private static readonly Dictionary<Type, string> _fileNameByType = new Dictionary<Type, string>
+        public FootieDataManagerContextSeed(IWebHostEnvironment env, IConfiguration configuration, ICsvDataRetriever csvDataRetriever)
         {
-            {typeof(Club), "Clubs.csv"},
-            {typeof(Coach), "Coaches.csv"},
-            {typeof(Country), "Countries.csv"},
-            {typeof(League), "Leagues.csv"},
-            {typeof(Player), "Players.csv"},
-            {typeof(Stadium), "Stadiums.csv"}
-        };
+            env = env ?? throw new ArgumentNullException(nameof(env));
+            configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
 
-        public FootieDataManagerContextSeed(IWebHostEnvironment env, IConfiguration configuration, ICsvDataRetriever csvSeeder)
-        {
             var relativeCsvFilesPath = configuration.GetValue<string>("CsvSeedFilesRelativePath");
             _seedFilesPath = Path.GetFullPath(relativeCsvFilesPath, env.ContentRootPath);
-            _csvSeeder = csvSeeder;
+            _csvDataRetriever = csvDataRetriever ?? throw new ArgumentNullException(nameof(csvDataRetriever));
+            _databaseSeeder = new FootieDataManagerSqlDbSeeder(csvDataRetriever, _seedFilesPath);
+            _memorySeeder = new FootieDataManagerMemoryContextSeeder(csvDataRetriever, _seedFilesPath);
         }
 
         public async Task SeedAsync(FootieDataManagerContext context)
         {
-            using (context)
-            {
-                foreach (var entityType in context.Model.GetEntityTypes())
-                {
-                    var type = entityType.ClrType;
-                    var setMethod = context.GetType().GetMethod(nameof(context.Set)).MakeGenericMethod(type);
+            var task = context.Database.IsSqlServer() ? _databaseSeeder.SeedAsync(context) : _memorySeeder.SeedAsync(context);
 
-                    IQueryable<dynamic> dbSet = setMethod?.Invoke(context, null) as IQueryable<dynamic>;
-
-                    if (!await dbSet?.AnyAsync())
-                    {
-                        var csv = GetFilePath(type);
-
-                        var seedData = File.Exists(csv)
-                            ? _csvSeeder.RetrieveData(type, csv)
-                            : GetPredefinedValues(dbSet);
-
-                        seedData?.ForEach(x => context.Entry(x).State = EntityState.Added);
-                    }
-                }
-
-                await context.SaveChangesAsync();
-            }
-        }
-
-        private List<object> GetPredefinedValues(IQueryable<object> dbSet) =>
-            dbSet switch
-            {
-                IQueryable<Continent> continents => Enumeration.GetAll<Continent>().ToList<object>(),
-                _ => new()
-            };
-
-        private string GetFilePath(Type type)
-        {
-            if (_fileNameByType.TryGetValue(type, out var filePath))
-                return _seedFilesPath + filePath;
-
-            return null;
+            await task;
         }
     }
 }

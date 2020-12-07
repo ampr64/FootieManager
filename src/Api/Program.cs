@@ -31,9 +31,9 @@ namespace Api
 
                 var env = services.GetService<IWebHostEnvironment>();
                 var configuration = services.GetService<IConfiguration>();
-                var csvSeeder = services.GetRequiredService<ICsvDataRetriever>();
+                var csvDataRetriever = services.GetRequiredService<ICsvDataRetriever>();
 
-                new FootieDataManagerContextSeed(env, configuration, csvSeeder)
+                new FootieDataManagerContextSeed(env, configuration, csvDataRetriever)
                     .SeedAsync(context)
                     .Wait();
             }
