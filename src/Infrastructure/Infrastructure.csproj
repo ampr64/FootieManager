@@ -6,17 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Persistence\20201208050035_Initial.cs" />
-    <Compile Remove="Persistence\20201208050035_Initial.Designer.cs" />
-    <Compile Remove="Persistence\20201208050118_Initial.cs" />
-    <Compile Remove="Persistence\20201208050118_Initial.Designer.cs" />
-    <Compile Remove="Persistence\Migrations\20201208050401_Initial.cs" />
-    <Compile Remove="Persistence\Migrations\20201208050401_Initial.Designer.cs" />
-    <Compile Remove="Persistence\Migrations\20201208050948_Initial.cs" />
-    <Compile Remove="Persistence\Migrations\20201208050948_Initial.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   
