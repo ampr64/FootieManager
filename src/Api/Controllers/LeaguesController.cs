@@ -5,15 +5,18 @@ using Api.Features.Leagues.Queries;
 using Api.Features.Leagues.Queries.GetCountryLeagues;
 using Api.Features.Leagues.Queries.GetLeagueDetail;
 using Api.Features.Leagues.Queries.GetLeagues;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
+    [Authorize]
     public class LeaguesController : ApiController
     {
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<LeagueDto>>> List()
         {
             var leagues = await Mediator.Send(new GetLeaguesQuery());
@@ -22,12 +25,14 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<LeagueDto>> GetDetail(int id)
         {
             return await Mediator.Send(new GetLeagueDetailQuery(id));
         }
 
         [HttpGet("countries/{countryId}")]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<LeagueDto>>> GetCountryLeagues(int countryId)
         {
             var leagues = await Mediator.Send(new GetCountryLeaguesQuery(countryId));

@@ -25,9 +25,7 @@ namespace Api
         {
             services.AddInfrastructure(Configuration);
 
-            services.ConfigureApplicationServices();
-
-            services.ConfigureMediatR();
+            services.ConfigureApplication();
 
             services.ConfigureMappings();
 

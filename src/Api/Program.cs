@@ -2,8 +2,10 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using ApplicationCore.Interfaces;
+using Infrastructure.Identity;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,9 +33,10 @@ namespace Api
 
                 var env = services.GetService<IWebHostEnvironment>();
                 var configuration = services.GetService<IConfiguration>();
+                var userManager = services.GetService<UserManager<ApplicationUser>>();
                 var csvDataRetriever = services.GetRequiredService<ICsvDataRetriever>();
 
-                new FootieDataManagerContextSeed(env, configuration, csvDataRetriever)
+                new FootieDataManagerContextSeed(env, configuration, userManager, csvDataRetriever)
                     .SeedAsync(context)
                     .Wait();
             }

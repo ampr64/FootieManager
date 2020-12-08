@@ -5,15 +5,18 @@ using Api.Features.Coaches.Queries;
 using Api.Features.Coaches.Queries.GetAvailableCoaches;
 using Api.Features.Coaches.Queries.GetCoachDetail;
 using Api.Features.Coaches.Queries.GetCoaches;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
+    [Authorize]
     public class CoachesController : ApiController
     {
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<CoachDto>>> List()
         {
             var coaches = await Mediator.Send(new GetCoachesQuery());
@@ -22,6 +25,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("available")]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<CoachDto>>> ListAvailable()
         {
             var availableCoaches = await Mediator.Send(new GetAvailableCoachesQuery());
@@ -30,6 +34,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<CoachDto>> GetDetail(int id)
         {
             return await Mediator.Send(new GetCoachDetailQuery(id));

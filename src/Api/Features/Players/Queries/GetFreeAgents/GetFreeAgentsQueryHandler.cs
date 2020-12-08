@@ -1,6 +1,4 @@
 ﻿using Api.Common.Queries;
-using Api.Features.Players.Queries;
-using Api.Features.Players.Queries.GetFreeAgents;
 using AutoMapper;
 using ApplicationCore.Entities;
 using ApplicationCore.Interfaces;
@@ -9,7 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Api.Controllers
+namespace Api.Features.Players.Queries.GetFreeAgents
 {
     public class GetFreeAgentsQueryHandler : ListQueryHandlerBase<GetFreeAgentsQuery, Player, PlayerDto>
     {

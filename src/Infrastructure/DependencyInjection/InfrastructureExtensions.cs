@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Infrastructure.Identity;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Infrastructure.DependencyInjection
 {
@@ -25,7 +26,14 @@ namespace Infrastructure.DependencyInjection
                         b => b.MigrationsAssembly(typeof(FootieDataManagerContext).Assembly.FullName)));
             }
 
-            container.AddDefaultIdentity<ApplicationUser>()
+            container.AddDefaultIdentity<ApplicationUser>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 3;
+            })
                 .AddEntityFrameworkStores<FootieDataManagerContext>();
 
             container.AddIdentityServer()
@@ -33,6 +41,10 @@ namespace Infrastructure.DependencyInjection
                         
             container.AddScoped<IApplicationDbContext,FootieDataManagerContext>();
             container.AddTransient<ICsvDataRetriever, CsvDataRetriever>();
+            container.AddTransient<IIdentityService<AppIdentityResult>, IdentityService>();
+
+            container.AddAuthentication()
+                .AddIdentityServerJwt();
 
             return container;
         }

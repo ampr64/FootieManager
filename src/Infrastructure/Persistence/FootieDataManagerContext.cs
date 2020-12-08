@@ -34,6 +34,9 @@ namespace Infrastructure.Persistence
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<ApplicationUser>().Property(au => au.EmailConfirmed).HasDefaultValue(true);
+
             builder.ApplyConfigurationsFromAssembly(GetType().Assembly);
         }
 

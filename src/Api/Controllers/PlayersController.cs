@@ -6,15 +6,18 @@ using Api.Features.Players.Queries.GetClubPlayers;
 using Api.Features.Players.Queries.GetFreeAgents;
 using Api.Features.Players.Queries.GetPlayerDetail;
 using Api.Features.Players.Queries.GetPlayers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
+    [Authorize]
     public class PlayersController : ApiController
     {
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<PlayerDto>>> List()
         {
             var stadiums = await Mediator.Send(new GetPlayersQuery());
@@ -23,6 +26,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("free-agents")]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<PlayerDto>>> ListFreeAgents()
         {
             var freeAgents = await Mediator.Send(new GetFreeAgentsQuery());
@@ -31,6 +35,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("clubs/{clubId}")]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<PlayerDto>>> List(int clubId)
         {
             var stadiums = await Mediator.Send(new GetClubPlayersQuery(clubId));
@@ -39,6 +44,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<PlayerDto>> GetDetail(int id)
         {
             return await Mediator.Send(new GetPlayerDetailQuery(id));

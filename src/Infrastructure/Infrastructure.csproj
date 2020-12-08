@@ -6,15 +6,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Persistence\20201208050035_Initial.cs" />
+    <Compile Remove="Persistence\20201208050035_Initial.Designer.cs" />
+    <Compile Remove="Persistence\20201208050118_Initial.cs" />
+    <Compile Remove="Persistence\20201208050118_Initial.Designer.cs" />
+    <Compile Remove="Persistence\Migrations\20201208050401_Initial.cs" />
+    <Compile Remove="Persistence\Migrations\20201208050401_Initial.Designer.cs" />
+    <Compile Remove="Persistence\Migrations\20201208050948_Initial.cs" />
+    <Compile Remove="Persistence\Migrations\20201208050948_Initial.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="16.1.0" />
-    <PackageReference Include="IdentityServer4" Version="4.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.10">
@@ -28,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <Folder Include="Persistence\Migrations\" />
   </ItemGroup>
 
 </Project>

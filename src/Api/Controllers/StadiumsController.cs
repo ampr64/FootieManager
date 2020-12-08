@@ -4,15 +4,18 @@ using Api.Features.Stadiums.Commands.UpdateStadium;
 using Api.Features.Stadiums.Queries;
 using Api.Features.Stadiums.Queries.GetStadiumDetail;
 using Api.Features.Stadiums.Queries.GetStadiums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
+    [Authorize]
     public class StadiumsController : ApiController
     {
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<StadiumDto>>> List()
         {
             var stadiums = await Mediator.Send(new GetStadiumsQuery());
@@ -21,6 +24,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<StadiumDto>> GetDetail(int id)
         {
             return await Mediator.Send(new GetStadiumDetailQuery(id));

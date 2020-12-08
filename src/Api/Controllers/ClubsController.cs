@@ -5,15 +5,18 @@ using Api.Features.Clubs.Queries;
 using Api.Features.Clubs.Queries.GetClubDetail;
 using Api.Features.Clubs.Queries.GetClubs;
 using Api.Features.Clubs.Queries.GetLeagueClubs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
+    [Authorize]
     public class ClubsController : ApiController
     {
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ClubDto>>> List()
         {
             var clubs = await Mediator.Send(new GetClubsQuery());
@@ -22,12 +25,14 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<ClubDetailDto>> GetDetail(int id)
         {
             return await Mediator.Send(new GetClubDetailQuery(id));
         }
 
         [HttpGet("leagues/{leagueId}")]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ClubDto>>> GetLeagueClubs(int leagueId)
         {
             var leagues = await Mediator.Send(new GetLeagueClubsQuery(leagueId));

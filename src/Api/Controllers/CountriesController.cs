@@ -4,15 +4,18 @@ using Api.Features.Countries.Commands.UpdateCountry;
 using Api.Features.Countries.Queries;
 using Api.Features.Countries.Queries.GetCountries;
 using Api.Features.Countries.Queries.GetCountryDetail;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
+    [Authorize]
     public class CountriesController : ApiController
     {
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<CountryDto>>> List()
         {
             var countries = await Mediator.Send(new GetCountriesQuery());
@@ -21,6 +24,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<CountryDto>> GetDetail(int id)
         {
             return await Mediator.Send(new GetCountryDetailQuery(id));
