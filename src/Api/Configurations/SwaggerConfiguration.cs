@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using System;
 
 namespace Api.Configurations
 {
@@ -8,16 +10,42 @@ namespace Api.Configurations
     {
         public static IServiceCollection ConfigureSwagger(this IServiceCollection services)
         {
-            services.AddSwaggerGen(config =>
+            services.AddSwaggerGen(options =>
             {
-                config.SwaggerDoc("v1", new OpenApiInfo
-                { 
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
                     Title = "FootieManager App",
                     Version = "v1",
-                    Description = "Demo .NET Core restful API implementing CQRS and Clean Architecture."
+                    Description = "Demo .NET Core restful API implementing CQRS and Clean Architecture.",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Álvaro Martín Prieto Rühle",
+                        Email = "alvaro.prieto@istea.com.ar",
+                        Url = new Uri("https://www.github.com/ampr64")
+                    }
                 });
-            });
-            services.AddSwaggerGenNewtonsoftSupport();
+
+                var securityScheme = new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.Http,
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Scheme = JwtBearerDefaults.AuthenticationScheme,
+                    Description = "Enter your JWT into the textbox.",
+                    Reference = new OpenApiReference
+                    {
+                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Type = ReferenceType.SecurityScheme
+                    }
+                };
+
+                options.AddSecurityDefinition(securityScheme.Scheme, securityScheme);
+
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    { securityScheme, Array.Empty<string>() }
+                });
+            }).AddSwaggerGenNewtonsoftSupport();
 
             return services;
         }
