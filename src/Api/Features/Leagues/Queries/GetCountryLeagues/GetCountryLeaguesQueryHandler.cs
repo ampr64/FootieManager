@@ -2,8 +2,8 @@
 using Api.Features.Leagues.Queries;
 using Api.Features.Leagues.Queries.GetCountryLeagues;
 using AutoMapper;
-using Core.Common;
-using Core.Entities;
+using ApplicationCore.Entities;
+using ApplicationCore.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

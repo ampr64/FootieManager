@@ -1,4 +1,4 @@
-﻿using Core.Common;
+﻿using ApplicationCore.Interfaces;
 using CsvHelper;
 using CsvHelper.Configuration;
 using System;

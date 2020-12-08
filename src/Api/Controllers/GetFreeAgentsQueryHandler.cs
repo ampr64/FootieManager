@@ -2,8 +2,8 @@
 using Api.Features.Players.Queries;
 using Api.Features.Players.Queries.GetFreeAgents;
 using AutoMapper;
-using Core.Common;
-using Core.Entities;
+using ApplicationCore.Entities;
+using ApplicationCore.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

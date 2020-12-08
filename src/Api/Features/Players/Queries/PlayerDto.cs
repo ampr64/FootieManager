@@ -1,7 +1,7 @@
 ﻿using Api.Common.Core;
 using Api.Common.Mappings;
-using Core.Entities;
-using Core.Enums;
+using ApplicationCore.Entities;
+using ApplicationCore.Enums;
 using System;
 
 namespace Api.Features.Players.Queries

@@ -1,7 +1,7 @@
 ﻿using Api.Common.Commands;
 using Api.Features.Clubs.Commands.UpdateClub;
-using Core.Common;
-using Core.Entities;
+using ApplicationCore.Entities;
+using ApplicationCore.Interfaces;
 
 namespace Api.Features.Clubs.Commands.UpdateClubDetails
 {

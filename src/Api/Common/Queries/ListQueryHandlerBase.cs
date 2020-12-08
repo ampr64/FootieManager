@@ -1,7 +1,8 @@
 ﻿using Api.Common.Mappings;
 using Api.Extensions;
 using AutoMapper;
-using Core.Common;
+using ApplicationCore.Common;
+using ApplicationCore.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

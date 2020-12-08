@@ -1,7 +1,7 @@
 ﻿using Api.Common.Commands;
 using AutoMapper;
-using Core.Common;
-using Core.Entities;
+using ApplicationCore.Entities;
+using ApplicationCore.Interfaces;
 
 namespace Api.Features.Leagues.Commands.NewLeague
 {

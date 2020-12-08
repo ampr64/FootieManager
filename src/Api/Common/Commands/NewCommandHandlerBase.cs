@@ -1,6 +1,7 @@
 ﻿using Api.Common.Mappings;
 using AutoMapper;
-using Core.Common;
+using ApplicationCore.Common;
+using ApplicationCore.Interfaces;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace Api.Common.Commands
 
             await _context.Set<TEntity>().AddAsync(entity, cancellationToken);
 
-            await _context.CommitChangesAsync(cancellationToken);
+            await _context.CommitAsync(cancellationToken);
 
             return entity.Id;
         }

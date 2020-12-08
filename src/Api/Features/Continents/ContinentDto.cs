@@ -1,7 +1,7 @@
 ﻿using Api.Common.Mappings;
 using Api.Features.Countries.Queries;
 using AutoMapper;
-using Core.Enumerations;
+using ApplicationCore.Enumerations;
 using System.Collections.Generic;
 
 namespace Api.Features.Continents

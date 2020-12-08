@@ -1,6 +1,6 @@
-﻿using Core.Common;
-using Core.Enumerations;
-using Core.Services;
+﻿using ApplicationCore.Common;
+using ApplicationCore.Enumerations;
+using ApplicationCore.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.IO;

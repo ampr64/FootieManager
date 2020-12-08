@@ -1,5 +1,5 @@
 ﻿using Api.Common.Commands;
-using Core.Enums;
+using ApplicationCore.Enums;
 using System;
 
 namespace Api.Features.Players.Commands.UpdatePlayer

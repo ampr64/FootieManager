@@ -1,5 +1,6 @@
 ﻿using Api.Exceptions;
-using Core.Common;
+using ApplicationCore.Common;
+using ApplicationCore.Interfaces;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace Api.Common.Commands
 
             _context.Entry(entity).CurrentValues.SetValues(request);
 
-            await _context.CommitChangesAsync(cancellationToken);
+            await _context.CommitAsync(cancellationToken);
 
             return Unit.Value;
         }

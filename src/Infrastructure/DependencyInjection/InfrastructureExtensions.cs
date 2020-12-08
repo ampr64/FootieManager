@@ -1,9 +1,10 @@
-﻿using Core.Common;
+﻿using ApplicationCore.Interfaces;
 using Infrastructure.Persistence;
 using Infrastructure.Files;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Infrastructure.Identity;
 
 namespace Infrastructure.DependencyInjection
 {
@@ -23,6 +24,12 @@ namespace Infrastructure.DependencyInjection
                         configuration.GetConnectionString("FootieDataManagerDb"),
                         b => b.MigrationsAssembly(typeof(FootieDataManagerContext).Assembly.FullName)));
             }
+
+            container.AddDefaultIdentity<ApplicationUser>()
+                .AddEntityFrameworkStores<FootieDataManagerContext>();
+
+            container.AddIdentityServer()
+                .AddApiAuthorization<ApplicationUser, FootieDataManagerContext>();
                         
             container.AddScoped<IApplicationDbContext,FootieDataManagerContext>();
             container.AddTransient<ICsvDataRetriever, CsvDataRetriever>();

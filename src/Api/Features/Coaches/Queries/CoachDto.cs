@@ -1,6 +1,6 @@
 ﻿using Api.Common.Core;
 using Api.Common.Mappings;
-using Core.Entities;
+using ApplicationCore.Entities;
 using System;
 
 namespace Api.Features.Coaches.Queries

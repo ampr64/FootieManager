@@ -1,4 +1,4 @@
-﻿using Core.Entities;
+﻿using ApplicationCore.Entities;
 using CsvHelper.Configuration;
 
 namespace Infrastructure.Files.Maps

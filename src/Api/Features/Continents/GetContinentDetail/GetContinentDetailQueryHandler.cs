@@ -1,11 +1,9 @@
 ﻿using Api.Common.Queries;
 using Api.Extensions;
 using AutoMapper;
-using Core.Common;
+using ApplicationCore.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

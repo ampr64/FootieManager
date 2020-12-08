@@ -1,5 +1,5 @@
 ﻿using Api.Common.Mappings;
-using Core.Entities;
+using ApplicationCore.Entities;
 
 namespace Api.Features.Stadiums.Queries
 {

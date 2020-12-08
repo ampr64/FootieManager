@@ -1,5 +1,6 @@
 ﻿using Api.Exceptions;
-using Core.Common;
+using ApplicationCore.Common;
+using ApplicationCore.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
@@ -24,7 +25,7 @@ namespace Api.Common.Commands
 
             _context.Entry(entity).State = EntityState.Deleted;
 
-            await _context.CommitChangesAsync(cancellationToken);
+            await _context.CommitAsync(cancellationToken);
 
             return Unit.Value;
         }

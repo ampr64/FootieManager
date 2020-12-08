@@ -1,7 +1,8 @@
 ﻿using Api.Common.Mappings;
 using Api.Exceptions;
 using AutoMapper;
-using Core.Common;
+using ApplicationCore.Common;
+using ApplicationCore.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 

@@ -2,7 +2,7 @@
 using Api.Features.Coaches.Queries;
 using Api.Features.Players.Queries;
 using Api.Features.Stadiums.Queries;
-using Core.Entities;
+using ApplicationCore.Entities;
 using System.Collections.Generic;
 
 namespace Api.Features.Clubs.Queries

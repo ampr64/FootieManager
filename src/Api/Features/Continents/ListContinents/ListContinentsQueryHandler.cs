@@ -2,8 +2,9 @@
 using Api.Extensions;
 using Api.Features.Countries.Queries;
 using AutoMapper;
-using Core.Common;
-using Core.Enumerations;
+using ApplicationCore.Common;
+using ApplicationCore.Enumerations;
+using ApplicationCore.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿using Core.Enumerations;
+﻿using ApplicationCore.Enumerations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

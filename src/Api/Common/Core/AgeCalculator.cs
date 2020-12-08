@@ -1,4 +1,4 @@
-﻿using Core.Services;
+﻿using ApplicationCore.Interfaces;
 using System;
 
 namespace Api.Common.Core

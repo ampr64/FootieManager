@@ -35,6 +35,8 @@ namespace Api
 
             services.ConfigureFluentValidations();
 
+            services.AddHttpContextAccessor();
+
             services.AddControllers(options =>
                 options.Filters.Add(new ApiExceptionFilterAttribute()))
                     .AddFluentValidation()
@@ -66,6 +68,10 @@ namespace Api
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                 );
+
+            app.UseAuthentication();
+
+            app.UseIdentityServer();
 
             app.UseAuthorization();
 

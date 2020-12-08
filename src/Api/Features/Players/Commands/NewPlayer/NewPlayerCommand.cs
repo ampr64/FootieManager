@@ -1,7 +1,7 @@
 ﻿using Api.Common.Commands;
 using Api.Common.Mappings;
-using Core.Entities;
-using Core.Enums;
+using ApplicationCore.Entities;
+using ApplicationCore.Enums;
 using System;
 
 namespace Api.Features.Players.Commands.NewPlayer

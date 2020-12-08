@@ -1,5 +1,5 @@
-﻿using Core.Entities;
-using Core.Enumerations;
+﻿using ApplicationCore.Entities;
+using ApplicationCore.Enumerations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

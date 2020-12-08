@@ -1,5 +1,5 @@
-﻿using Core.Common;
-using Core.Services;
+﻿using ApplicationCore.Common;
+using ApplicationCore.Interfaces;
 using Infrastructure.Persistence.Seed;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;

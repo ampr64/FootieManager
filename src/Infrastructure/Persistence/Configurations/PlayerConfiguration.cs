@@ -1,5 +1,5 @@
-﻿using Core.Entities;
-using Core.Enums;
+﻿using ApplicationCore.Entities;
+using ApplicationCore.Enums;
 using Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

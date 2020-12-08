@@ -1,6 +1,6 @@
 ﻿using Api.Common.Commands;
 using Api.Common.Mappings;
-using Core.Entities;
+using ApplicationCore.Entities;
 
 namespace Api.Features.Clubs.Commands.NewClub
 {

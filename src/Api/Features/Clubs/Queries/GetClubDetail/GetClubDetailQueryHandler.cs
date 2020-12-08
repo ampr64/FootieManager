@@ -1,7 +1,7 @@
 ﻿using Api.Common.Queries;
 using AutoMapper;
-using Core.Common;
-using Core.Entities;
+using ApplicationCore.Entities;
+using ApplicationCore.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;

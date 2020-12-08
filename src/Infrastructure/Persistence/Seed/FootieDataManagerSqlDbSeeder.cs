@@ -1,7 +1,7 @@
-﻿using Core.Common;
-using Core.Entities;
-using Core.Enumerations;
-using Core.Services;
+﻿using ApplicationCore.Common;
+using ApplicationCore.Entities;
+using ApplicationCore.Enumerations;
+using ApplicationCore.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
